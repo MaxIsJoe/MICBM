@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1wnqw761iybt"]
+
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="1_46rjp"]
+[ext_resource type="Script" path="res://pieces/flippable.gd" id="2_v1oe4"]
+[ext_resource type="PackedScene" path="res://pieces/visual.tscn" id="3_peugm"]
+[ext_resource type="Texture2D" uid="uid://bwop6wlt1bdgx" path="res://entities/enemies/shibarist.png" id="4_5fr8v"]
+[ext_resource type="Script" path="res://fsm/fsm.gd" id="5_ak0jc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18pip"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63d7c"]
+radius = 80.2247
+
+[node name="EntityBase" type="CharacterBody2D"]
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_18pip")
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("1_46rjp")
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -32)
+shape = SubResource("CircleShape2D_63d7c")
+
+[node name="flippable" type="Node2D" parent="."]
+script = ExtResource("2_v1oe4")
+
+[node name="visual" parent="flippable" instance=ExtResource("3_peugm")]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_5fr8v")
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource("5_ak0jc")

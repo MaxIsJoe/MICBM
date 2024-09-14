@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://djksonkjb4iu5"]
+
+[ext_resource type="Script" path="res://modifiers/status_effects/status_effect_type.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://t8afhqwv7a8k" path="res://modifiers/status_effects/item_sprites/legs_tied.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://7ttiddcpi383" path="res://modifiers/status_effects/legs_tied.png" id="3"]
+[ext_resource type="Script" path="res://modifiers/status_effects/tied_legs.gd" id="4"]
+
+[resource]
+script = ExtResource("1")
+item_sprite = ExtResource("2")
+name = "Tied legs"
+description = "Your legs are tied such that you cannot move as fast!"
+icon = ExtResource("3")
+effect = ExtResource("4")
+modUse = 1

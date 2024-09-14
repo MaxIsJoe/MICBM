@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/upgrade_screen.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://sg4qhc1i4p60" path="res://ui/components/upgrade_panel.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://dadyup3ritb1m" path="res://modifiers/upgrades/upgrades.tres" id="3"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="4"]
+
+[node name="upgrade_screen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+upgrade_panel_scene = ExtResource("2")
+upgrades = ExtResource("3")
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 16.0
+offset_right = -192.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="all" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 16.0
+offset_right = -192.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="RichTextLabel" parent="all"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]GET YER UPGRADES![/center]"
+fit_content = true
+script = ExtResource("4")
+base_text = "GET YER UPGRADES!"
+
+[node name="upgrades" type="VBoxContainer" parent="all"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="all"]
+layout_mode = 2
+
+[node name="reroll" type="Button" parent="all/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Reroll"
+
+[node name="none" type="Button" parent="all/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Take none"
+
+[connection signal="pressed" from="all/buttons/reroll" to="." method="_on_reroll_pressed"]
+[connection signal="pressed" from="all/buttons/none" to="." method="_on_none_pressed"]

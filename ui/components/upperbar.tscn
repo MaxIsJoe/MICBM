@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1t001k5c426y"]
+
+[ext_resource type="Texture2D" uid="uid://lcg4laayqpq4" path="res://ui/components/beard.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://tl8cemononhn" path="res://ui/components/tiling.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://chwvvh1t8y6s5" path="res://ui/components/orb.png" id="3"]
+[ext_resource type="PackedScene" path="res://ui/components/bomb_display.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://dd4o4d33jx570" path="res://ui/components/orb_over.png" id="5"]
+[ext_resource type="PackedScene" path="res://ui/components/money_display.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://ui/components/main_progress_bar.tscn" id="7"]
+
+[node name="upperbar" type="Control"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -412.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="beard" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -64.0
+offset_right = 240.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1")
+
+[node name="bac" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="orb_left" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3")
+
+[node name="bomb_display" parent="orb_left" instance=ExtResource("4")]
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+icon_spacing = Vector2(16, 16)
+
+[node name="shine" type="TextureRect" parent="orb_left"]
+modulate = Color(1, 1, 1, 0.494118)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5")
+
+[node name="orb_right" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture = ExtResource("3")
+flip_h = true
+
+[node name="money_display" parent="orb_right" instance=ExtResource("6")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[node name="shine" type="TextureRect" parent="orb_right"]
+modulate = Color(1, 1, 1, 0.564706)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5")
+flip_h = true
+
+[node name="main_progress_bar" parent="." instance=ExtResource("7")]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -48.0
+offset_right = -128.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2

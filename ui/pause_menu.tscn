@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://riv6wqqo1yea" path="res://ui/title/main_menu.tscn" id="2"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://vda58drrbvtc" path="res://ui/options.tscn" id="4"]
+
+[node name="pause_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+main_menu_scene = ExtResource("2")
+
+[node name="color_rect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.133333, 0.203922, 1)
+
+[node name="list" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.267
+anchor_right = 0.733
+anchor_bottom = 1.0
+offset_left = -0.320007
+offset_top = 64.0
+offset_right = 0.319946
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="title" type="RichTextLabel" parent="list"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]ICBM paused[/center]"
+fit_content = true
+script = ExtResource("3")
+base_text = "ICBM paused"
+
+[node name="options" parent="list" instance=ExtResource("4")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="buttons" type="HBoxContainer" parent="list"]
+layout_mode = 2
+alignment = 1
+
+[node name="continue" type="Button" parent="list/buttons"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Continue"
+
+[node name="egress" type="Button" parent="list/buttons"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Egress"
+
+[connection signal="pressed" from="list/buttons/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="list/buttons/egress" to="." method="_on_egress_pressed"]

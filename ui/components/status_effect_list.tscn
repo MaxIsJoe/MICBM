@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/components/status_effect_list.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dtmplgt8uvjc1" path="res://ui/components/status_effect_icon.tscn" id="2"]
+
+[node name="status_effect_list" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1")
+icon_scene = ExtResource("2")

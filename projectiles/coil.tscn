@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://cshaw2forj6ut"]
+
+[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dogbrp4db4e8j" path="res://fx/break_bullet.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://djksonkjb4iu5" path="res://modifiers/status_effects/tied_legs.tres" id="3"]
+[ext_resource type="Script" path="res://modifiers/modifier_type.gd" id="3_khw6i"]
+[ext_resource type="PackedScene" uid="uid://dowb0mebforvd" path="res://fx/bullet_glow.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://c0case7weipyp" path="res://projectiles/coil.png" id="5"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 8.0
+
+[sub_resource type="Animation" id="2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "spin"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="4"]
+_data = {
+"RESET": SubResource("2"),
+"spin": SubResource("3")
+}
+
+[node name="coil" type="Area2D" groups=["projectile"]]
+collision_priority = 2.0
+script = ExtResource("1")
+death_scene = ExtResource("2")
+status_effects = Array[ExtResource("3_khw6i")]([ExtResource("3")])
+
+[node name="bullet_glow" parent="." instance=ExtResource("4")]
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("4")
+}
+autoplay = "spin"

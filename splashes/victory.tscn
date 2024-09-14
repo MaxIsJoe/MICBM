@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Theme" uid="uid://b14dliq0dwgnh" path="res://ui/style/theme_main.tres" id="1"]
+[ext_resource type="Script" path="res://splashes/end_splash.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://1u3cxiqo7v1q" path="res://splashes/victory_0.png" id="3"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="4"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.141176, 0.133333, 0.203922, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("text_holder/centred_label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("text_holder/egress:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+script = null
+
+[sub_resource type="Animation" id="2"]
+resource_name = "arrive"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color_rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.141176, 0.133333, 0.203922, 1), Color(0.141176, 0.133333, 0.203922, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("text_holder/centred_label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("text_holder/egress:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+script = null
+
+[sub_resource type="AnimationLibrary" id="3"]
+_data = {
+"RESET": SubResource("1"),
+"arrive": SubResource("2")
+}
+script = null
+
+[node name="victory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("2")
+
+[node name="image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="color_rect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.133333, 0.203922, 1)
+
+[node name="text_holder" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = -32.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="centred_label" type="RichTextLabel" parent="text_holder"]
+layout_mode = 2
+size_flags_vertical = 6
+bbcode_enabled = true
+text = "[center]And so it was that Kim was able to launch the dreaded Intercontinental Bondage Missile, and cast myriad articles of restraint onto every human alive.
+
+They would all come to serve her for years to come, as the foremost Arch-Villain in living history.[/center]"
+fit_content = true
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("4")
+base_text = "And so it was that Kim was able to launch the dreaded Intercontinental Bondage Missile, and cast myriad articles of restraint onto every human alive.
+
+They would all come to serve her for years to come, as the foremost Arch-Villain in living history."
+
+[node name="egress" type="Button" parent="text_holder"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Egress"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("3")
+}
+autoplay = "arrive"
+
+[connection signal="pressed" from="text_holder/egress" to="." method="_on_egress_pressed"]

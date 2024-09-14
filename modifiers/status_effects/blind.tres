@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cxvcivujxg7vj"]
+
+[ext_resource type="Script" path="res://modifiers/status_effects/status_effect_type.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://chh7x4i0r0ifk" path="res://modifiers/status_effects/item_sprites/blind.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b6mk6gw2qd4kg" path="res://modifiers/status_effects/blind.png" id="3"]
+[ext_resource type="Script" path="res://modifiers/status_effects/blind.gd" id="4"]
+
+[resource]
+script = ExtResource("1")
+item_sprite = ExtResource("2")
+name = "Blind"
+description = "Look at how much you can't see! Gaze upon it with your own two eyes and visually comprehend how little you can see! Lo and behold your lack of vision! Do you see now?"
+icon = ExtResource("3")
+effect = ExtResource("4")
+modUse = 1

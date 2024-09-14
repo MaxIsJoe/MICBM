@@ -1,0 +1,93 @@
+[gd_scene load_steps=17 format=3 uid="uid://0ft28uu0mlme"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dkod2l073dco0" path="res://splashes/failure.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://4afdalbany46" path="res://entities/player/kim/kim.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bcf3q1o7uue61" path="res://entities/player/kim/kim_armbound.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c8o45enbr18p5" path="res://entities/player/kim/kim_legbound.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://ip4figo2qmae" path="res://entities/player/kim/kim_bothbound.png" id="7"]
+[ext_resource type="Script" path="res://pieces/flippable.gd" id="8"]
+[ext_resource type="PackedScene" path="res://pieces/visual.tscn" id="9"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="10"]
+[ext_resource type="PackedScene" path="res://pieces/cam.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://ui/components/death_gauge.tscn" id="12"]
+[ext_resource type="Script" path="res://fsm/fsm.gd" id="13"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 25.2982
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 17.8885
+
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.265957, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.501887), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="4"]
+offsets = PackedFloat32Array(0, 0.0491803, 0.139344, 0.614754, 0.967213)
+colors = PackedColorArray(0.25098, 0.2, 0.32549, 0, 0.737255, 0.290196, 0.607843, 1, 1, 1, 1, 1, 0.737255, 0.290196, 0.607843, 1, 0.25098, 0.2, 0.32549, 0)
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1")
+failure_scene = ExtResource("3")
+default_image = ExtResource("4")
+armbound_image = ExtResource("5")
+legbound_image = ExtResource("6")
+bothbound_image = ExtResource("7")
+bondage_resistance = 4.0
+
+[node name="flippable" type="Node2D" parent="."]
+script = ExtResource("8")
+flip_speed = 10.0
+
+[node name="visual" parent="flippable" instance=ExtResource("9")]
+unique_name_in_owner = true
+position = Vector2(0, -40)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("10")
+teams = Array[int]([0])
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("2")
+
+[node name="camholder" type="Node2D" parent="."]
+position = Vector2(0, 64)
+
+[node name="cam" parent="camholder" instance=ExtResource("11")]
+unique_name_in_owner = true
+
+[node name="ear" type="AudioListener2D" parent="."]
+current = true
+
+[node name="silo_indicator" type="Line2D" parent="."]
+unique_name_in_owner = true
+width_curve = SubResource("3")
+gradient = SubResource("4")
+
+[node name="gauge_holder" type="Node2D" parent="."]
+position = Vector2(0, -96)
+
+[node name="death_gauge" parent="gauge_holder" instance=ExtResource("12")]
+scale = Vector2(0.75, 0.75)
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource("13")
+
+[node name="reload_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.35
+one_shot = true
+
+[node name="build_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="filled" from="gauge_holder/death_gauge" to="." method="_on_death_gauge_filled"]
+[connection signal="timeout" from="build_timer" to="." method="_on_build_timer_timeout"]

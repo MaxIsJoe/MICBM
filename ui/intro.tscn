@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Theme" uid="uid://b14dliq0dwgnh" path="res://ui/style/theme_main.tres" id="1"]
+[ext_resource type="Script" path="res://ui/intro.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://blgd0k73jh72w" path="res://gameholder.tscn" id="3"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="4"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("textholder/label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+script = null
+
+[sub_resource type="Animation" id="2"]
+resource_name = "arrive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("textholder/label:visible_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.1, 0.9, 1.0]
+}
+script = null
+
+[sub_resource type="AnimationLibrary" id="3"]
+_data = {
+"RESET": SubResource("1"),
+"arrive": SubResource("2")
+}
+script = null
+
+[node name="intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("2")
+game_scene = ExtResource("3")
+
+[node name="textholder" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = 64.0
+offset_right = 160.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="label" type="RichTextLabel" parent="textholder"]
+layout_mode = 2
+size_flags_vertical = 6
+bbcode_enabled = true
+text = "[center]Your name? Kim.
+
+Your objective? Build and launch the [wave]Intercontinental Bondage Missile[/wave], so that you can place the entire world in bondage to your will.
+
+Your problem? A vast gaggle of heroes has come to stop you.[/center]"
+fit_content = true
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("4")
+base_text = "Your name? Kim.
+
+Your objective? Build and launch the [wave]Intercontinental Bondage Missile[/wave], so that you can place the entire world in bondage to your will.
+
+Your problem? A vast gaggle of heroes has come to stop you."
+
+[node name="proceed" type="Button" parent="textholder"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Proceed"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("3")
+}
+autoplay = "arrive"
+
+[connection signal="pressed" from="textholder/proceed" to="." method="_on_proceed_pressed"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=12 format=3 uid="uid://dnyry4no2j4bm"]
+
+[ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_clcvx"]
+[ext_resource type="Texture2D" uid="uid://3hn5cyk2ob8r" path="res://entities/player/Engineer/engineer-default.png" id="2_o3ppt"]
+[ext_resource type="Texture2D" uid="uid://ct8hlnhnc32wg" path="res://entities/player/Engineer/engineer-armsbound.png" id="3_4jl16"]
+[ext_resource type="Texture2D" uid="uid://drbgb2vy0vx2n" path="res://entities/player/Engineer/engineer-legsbound.png" id="4_kekh5"]
+[ext_resource type="Texture2D" uid="uid://ynvlcdn1cvqh" path="res://entities/player/Engineer/engineer-bothbound.png" id="5_vvwpl"]
+[ext_resource type="Script" path="res://entities/player/Engineer/states/engineer_normal.gd" id="6_cog3f"]
+[ext_resource type="Script" path="res://entities/player/Engineer/states/engineer_building.gd" id="7_nueui"]
+[ext_resource type="PackedScene" uid="uid://dbpb3g4nf4pd3" path="res://entities/player/Engineer/ui/build_ui.tscn" id="8_pysi2"]
+
+[sub_resource type="Curve" id="Curve_n73op"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0oi7y"]
+curve = SubResource("Curve_n73op")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qasb"]
+particle_flag_disable_z = true
+spread = 110.275
+scale_min = 2.0
+scale_max = 6.0
+alpha_curve = SubResource("CurveTexture_0oi7y")
+turbulence_noise_strength = 0.57
+
+[node name="Engineer" instance=ExtResource("1_clcvx")]
+default_image = ExtResource("2_o3ppt")
+armbound_image = ExtResource("3_4jl16")
+legbound_image = ExtResource("4_kekh5")
+bothbound_image = ExtResource("5_vvwpl")
+max_speed = 1500.0
+acceleration = 200.0
+
+[node name="visual" parent="flippable" index="0"]
+texture = ExtResource("2_o3ppt")
+
+[node name="normal" type="Node" parent="fsm" index="0"]
+script = ExtResource("6_cog3f")
+
+[node name="building" type="Node" parent="fsm" index="1"]
+script = ExtResource("7_nueui")
+
+[node name="reload_timer" parent="." index="8"]
+wait_time = 0.7
+
+[node name="build_timer" parent="." index="9"]
+wait_time = 0.4
+
+[node name="smoke" type="GPUParticles2D" parent="." index="10"]
+position = Vector2(0, 20)
+process_material = SubResource("ParticleProcessMaterial_8qasb")
+
+[node name="BuildUI" parent="." index="11" instance=ExtResource("8_pysi2")]
+visible = false
+
+[connection signal="timeout" from="reload_timer" to="fsm/normal" method="gain_bomb"]

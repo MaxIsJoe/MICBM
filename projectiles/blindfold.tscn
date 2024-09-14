@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://ci8cb75frgkel"]
+
+[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dogbrp4db4e8j" path="res://fx/break_bullet.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://cxvcivujxg7vj" path="res://modifiers/status_effects/blind.tres" id="3"]
+[ext_resource type="Script" path="res://modifiers/modifier_type.gd" id="3_lkj2h"]
+[ext_resource type="PackedScene" uid="uid://dowb0mebforvd" path="res://fx/bullet_glow.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://bm3tu24gu17xa" path="res://projectiles/blindfold.png" id="5"]
+[ext_resource type="Script" path="res://pieces/rotation_randomiser.gd" id="6"]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 3.57889
+height = 26.8327
+
+[node name="blindfold" type="Area2D" groups=["projectile"]]
+collision_priority = 2.0
+script = ExtResource("1")
+death_scene = ExtResource("2")
+duration = 20.0
+status_effects = Array[ExtResource("3_lkj2h")]([ExtResource("3")])
+
+[node name="bullet_glow" parent="." instance=ExtResource("4")]
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -3)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+rotation = 1.10447
+shape = SubResource("1")
+
+[node name="rotation_randomiser" type="Node" parent="."]
+script = ExtResource("6")

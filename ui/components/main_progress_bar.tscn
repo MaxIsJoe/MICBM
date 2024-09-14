@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bq8q0asqp5611" path="res://ui/components/progress_bar_bac.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://yug2cg8yqrva" path="res://ui/components/progress_bar_filling.png" id="2"]
+[ext_resource type="Script" path="res://ui/components/main_progress_bar.gd" id="3"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="4"]
+
+[node name="main_progress_bar" type="TextureProgressBar"]
+offset_right = 960.0
+offset_bottom = 32.0
+nine_patch_stretch = true
+stretch_margin_left = 32
+stretch_margin_right = 32
+texture_under = ExtResource("1")
+texture_progress = ExtResource("2")
+script = ExtResource("3")
+
+[node name="label" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][/center]"
+fit_content = true
+script = ExtResource("4")

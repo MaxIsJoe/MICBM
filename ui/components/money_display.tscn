@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://ui/components/money_display.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d05flgimnwihl" path="res://ui/components/money.png" id="2"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="3"]
+
+[node name="money_display" type="Control"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 96.0
+offset_bottom = 96.0
+pivot_offset = Vector2(48, 48)
+script = ExtResource("1")
+rotation_size = 0.4
+
+[node name="image" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("2")
+
+[node name="label" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]€0000[/center]"
+fit_content = true
+script = ExtResource("3")
+base_text = "€0000"

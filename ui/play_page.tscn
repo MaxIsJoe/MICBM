@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dns6do57c24kx"]
+
+[ext_resource type="PackedScene" uid="uid://ctfwa3wslcd24" path="res://ui/character_select_button.tscn" id="1_6f4nf"]
+[ext_resource type="Script" path="res://ui/play_page.gd" id="1_ggb0s"]
+[ext_resource type="Resource" uid="uid://mwqa7wlwfvnm" path="res://entities/player/player_characters.tres" id="2_fx63e"]
+[ext_resource type="PackedScene" path="res://ui/intro.tscn" id="2_iuad8"]
+[ext_resource type="Texture2D" uid="uid://4afdalbany46" path="res://entities/player/kim/kim.png" id="2_vimwo"]
+
+[node name="play_page" type="Control" node_paths=PackedStringArray("character_name", "character_desc", "character_icon", "character_buttons_grid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggb0s")
+intro_scene = ExtResource("2_iuad8")
+characters_resources = ExtResource("2_fx63e")
+character_button = ExtResource("1_6f4nf")
+character_name = NodePath("list/character_name")
+character_desc = NodePath("list/character_desc")
+character_icon = NodePath("list/character_icon")
+character_buttons_grid = NodePath("list/grid_container")
+
+[node name="list" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="characterselection" type="RichTextLabel" parent="list"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Select A Character"
+
+[node name="h_separator" type="HSeparator" parent="list"]
+layout_mode = 2
+
+[node name="grid_container" type="GridContainer" parent="list"]
+layout_mode = 2
+columns = 6
+
+[node name="character_name" type="RichTextLabel" parent="list"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Character Name"
+
+[node name="character_icon" type="TextureRect" parent="list"]
+layout_mode = 2
+texture = ExtResource("2_vimwo")
+stretch_mode = 3
+
+[node name="character_desc" type="RichTextLabel" parent="list"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Character Description"
+
+[node name="button" type="Button" parent="list"]
+layout_mode = 2
+text = "Start Game"
+
+[connection signal="button_down" from="list/button" to="." method="_on_play_pressed"]

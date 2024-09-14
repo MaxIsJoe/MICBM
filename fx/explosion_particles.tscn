@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://depwj6sy4uvyh" path="res://fx/spark.png" id="1"]
+[ext_resource type="Script" path="res://fx/transient_particles.gd" id="2"]
+
+[sub_resource type="Curve" id="1"]
+_data = [Vector2(0, 0.109434), 0.0, 0.0, 0, 0, Vector2(0.0113636, 0.833962), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+script = null
+
+[sub_resource type="Gradient" id="2"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.265487, 0.377049, 0.672131, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.701961, 0.72549, 0.819608, 1, 0.737255, 0.290196, 0.607843, 1, 0.25098, 0.2, 0.32549, 0)
+script = null
+
+[node name="explosion_particles" type="CPUParticles2D"]
+modulate = Color(1, 1, 1, 0.0588235)
+emitting = false
+amount = 40
+lifetime = 9.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+texture = ExtResource("1")
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, -10)
+initial_velocity_max = 20.0
+angle_max = 260.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("1")
+color_ramp = SubResource("2")
+script = ExtResource("2")

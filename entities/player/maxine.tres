@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlayerInfo" load_steps=4 format=3 uid="uid://bsw2ixaudo52o"]
+
+[ext_resource type="Texture2D" uid="uid://dwejit8nwf74t" path="res://entities/player/Maxine/maxine.png" id="1_htdob"]
+[ext_resource type="PackedScene" uid="uid://de5ykjjgv464o" path="res://entities/player/Maxine/maxine.tscn" id="2_q3vi2"]
+[ext_resource type="Script" path="res://entities/player/playerinfo.gd" id="3_q6gaq"]
+
+[resource]
+script = ExtResource("3_q6gaq")
+character_name = "Maxine"
+character_desc = "A blank canvas"
+character_icon = ExtResource("1_htdob")
+character_scene = ExtResource("2_q3vi2")

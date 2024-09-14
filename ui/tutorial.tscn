@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Theme" uid="uid://b14dliq0dwgnh" path="res://ui/style/theme_main.tres" id="1"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="2"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+script = null
+
+[sub_resource type="Animation" id="2"]
+resource_name = "arrive"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(20, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+script = null
+
+[sub_resource type="AnimationLibrary" id="3"]
+_data = {
+"RESET": SubResource("1"),
+"arrive": SubResource("2")
+}
+script = null
+
+[node name="tutorial" type="RichTextLabel"]
+offset_right = 512.0
+offset_bottom = 192.0
+theme = ExtResource("1")
+bbcode_enabled = true
+text = "[center]SPACE to drop bondage-bombs
+Bombs move in the same direction you do
+
+Enemies shoot BONDAGE at you!
+Stand still to remove it
+Bear too much bondage in order to lose
+
+Finish building the ICBM in order to win![/center]"
+fit_content = true
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("2")
+base_text = "SPACE to drop bondage-bombs
+Bombs move in the same direction you do
+
+Enemies shoot BONDAGE at you!
+Stand still to remove it
+Bear too much bondage in order to lose
+
+Finish building the ICBM in order to win!"
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("3")
+}
+autoplay = "arrive"

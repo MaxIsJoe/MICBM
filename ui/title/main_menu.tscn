@@ -1,0 +1,539 @@
+[gd_scene load_steps=27 format=3 uid="uid://r6g5p3cgklbk"]
+
+[ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1"]
+[ext_resource type="Script" path="res://ui/title/main_menu.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://bald3sod53jhx" path="res://audio/music/Superweapon.ogg" id="3"]
+[ext_resource type="Shader" path="res://shaders/pan.gdshader" id="4_iucsf"]
+[ext_resource type="Texture2D" uid="uid://o3pyywoscv8a" path="res://ui/title/missile.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://brp2bgi5sregk" path="res://ui/title/icbm-tile.png" id="5_xg7eh"]
+[ext_resource type="Texture2D" uid="uid://depwj6sy4uvyh" path="res://fx/spark.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://dowb0mebforvd" path="res://fx/bullet_glow.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://cxmaukiw0kcbj" path="res://ui/title/i.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://cwlv21cbeigfe" path="res://ui/title/m.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://d11tqngmbs5s2" path="res://ui/title/c.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://q1234n0pku6b" path="res://ui/title/b.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dgtvyh7c5w3fo" path="res://ui/title/textbox.png" id="12"]
+[ext_resource type="Script" path="res://pieces/centred_label.gd" id="13"]
+[ext_resource type="Texture2D" uid="uid://beh4maw0hr8bd" path="res://ui/link_discord.png" id="14"]
+[ext_resource type="Script" path="res://ui/title/link.gd" id="15"]
+[ext_resource type="Texture2D" uid="uid://bnkyvmhf8js6" path="res://ui/link_patreon.png" id="16"]
+[ext_resource type="PackedScene" uid="uid://ccrgoofit65y2" path="res://ui/options.tscn" id="17_o0xa3"]
+[ext_resource type="PackedScene" uid="uid://dns6do57c24kx" path="res://ui/play_page.tscn" id="18_smre0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hbxd"]
+shader = ExtResource("4_iucsf")
+shader_parameter/speed = Vector2(0.09, 0)
+shader_parameter/transparency = 0.16
+
+[sub_resource type="Curve" id="1"]
+_data = [Vector2(0, 0.456604), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="2"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.442623, 0.631148, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.701961, 0.72549, 0.819608, 1, 0.737255, 0.290196, 0.607843, 1, 0.25098, 0.2, 0.32549, 0)
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("i:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-152, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("b:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(56, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("m:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("c:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-56, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("missile:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 96)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "arrive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("missile:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-632, 624), Vector2(-505.6, 518.4), Vector2(0, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("i:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-608, -224), Vector2(-516.8, -174.4), Vector2(-152, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("m:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(544, -240), Vector2(464, -187.2), Vector2(144, 24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("c:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-208, -296), Vector2(-177.6, -236.8), Vector2(-56, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("b:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, -296), Vector2(139.2, -236.8), Vector2(56, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"arrive"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.25098, 0.2, 0.32549, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="5"]
+resource_name = "shake"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("i:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-152, 24), Vector2(-160, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("b:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(56, 0), Vector2(56, 8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("m:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(152, 32), Vector2(144, 24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("c:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-64, 0), Vector2(-56, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("missile:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(8, 88)]
+}
+
+[sub_resource type="AnimationLibrary" id="6"]
+_data = {
+"RESET": SubResource("3"),
+"arrive": SubResource("4"),
+"shake": SubResource("5")
+}
+
+[node name="main_menu" type="Control" node_paths=PackedStringArray("pages_holder", "page_options", "page_about", "page_play")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("2")
+imagery_position = Vector2(0.5, 0.25)
+menu_music = ExtResource("3")
+pages_holder = NodePath("Pages")
+page_options = NodePath("Pages/options")
+page_about = NodePath("Pages/about")
+page_play = NodePath("Pages/play_page")
+
+[node name="background-tile" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.211765)
+self_modulate = Color(1, 1, 1, 0.203922)
+material = SubResource("ShaderMaterial_6hbxd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -917.0
+offset_top = 169.0
+offset_right = 244.0
+offset_bottom = 1477.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.588176
+texture = ExtResource("5_xg7eh")
+stretch_mode = 1
+
+[node name="imagery" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(512, 144)
+
+[node name="missile" type="Sprite2D" parent="imagery"]
+position = Vector2(0, 96)
+texture = ExtResource("5")
+
+[node name="exhaust" type="CPUParticles2D" parent="imagery/missile"]
+show_behind_parent = true
+position = Vector2(-208, 152)
+amount = 70
+texture = ExtResource("6")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(-2, 1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+angle_max = 360.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("1")
+color_ramp = SubResource("2")
+
+[node name="bullet_glow" parent="imagery/missile" instance=ExtResource("7")]
+show_behind_parent = true
+position = Vector2(-224, 160)
+scale = Vector2(0.5, 0.5)
+
+[node name="i" type="Sprite2D" parent="imagery"]
+position = Vector2(-152, 24)
+texture = ExtResource("8")
+
+[node name="m" type="Sprite2D" parent="imagery"]
+position = Vector2(144, 24)
+texture = ExtResource("9")
+
+[node name="c" type="Sprite2D" parent="imagery"]
+position = Vector2(-56, 0)
+texture = ExtResource("10")
+
+[node name="b" type="Sprite2D" parent="imagery"]
+position = Vector2(56, 0)
+texture = ExtResource("11")
+
+[node name="textbox" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -46.0
+offset_right = 224.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="text_holder" type="VBoxContainer" parent="textbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="subtitle" type="RichTextLabel" parent="textbox/text_holder"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Intercontinental
+Bondage
+Missile[/center]"
+fit_content = true
+script = ExtResource("13")
+base_text = "Intercontinental
+Bondage
+Missile"
+
+[node name="buttons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 254.0
+grow_vertical = 2
+alignment = 1
+
+[node name="play" type="Button" parent="buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "COMMENCE"
+
+[node name="settings" type="Button" parent="buttons"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="about" type="Button" parent="buttons"]
+layout_mode = 2
+text = "ABOUT"
+
+[node name="quit" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "EGRESS"
+
+[node name="links" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -72.0
+offset_right = 140.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="discord" type="TextureButton" parent="links"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("14")
+script = ExtResource("15")
+url = "https://discord.gg/KAWxBTBDt5"
+
+[node name="patreon" type="TextureButton" parent="links"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("16")
+script = ExtResource("15")
+url = "https://www.patreon.com/Daent"
+
+[node name="flash" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="animator" type="AnimationPlayer" parent="."]
+root_node = NodePath("../imagery")
+libraries = {
+"": SubResource("6")
+}
+autoplay = "arrive"
+next/arrive = &"shake"
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.591
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_left = -0.360046
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 0.0799561
+
+[node name="background" type="ColorRect" parent="Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.0941176, 0.0941176, 0.372549)
+
+[node name="options" parent="Pages" instance=ExtResource("17_o0xa3")]
+visible = false
+layout_mode = 1
+
+[node name="about" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="rich_text_label" type="RichTextLabel" parent="Pages/about"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]
+ICBM is a game originally developed by Daent.
+Maxine's ICBM is a modified version that adds new content and improvements to the game.
+
+[b]Q: Why make this?[/b]
+Because I'm bored.
+
+[b]Q: How did you mod/decompile this game?[/b]
+A witch doesn't share her arcane ways :)
+also google is a thing
+
+[b]Q: What improvements were made?[/b]
+- Centered the UI because I hate looking up.
+- Changed some mechanics to make the game slightly more engaging.
+- Added some general polish and feedback to some stuff.
+
+[b]Q: Do you make money off this?[/b]
+I do not. But if you'd like to support my work, you can check out this page:
+[u]https://www.maxisjoe.xyz/maxfund[/u]
+"
+
+[node name="play_page" parent="Pages" instance=ExtResource("18_smre0")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="buttons/play" to="." method="_on_play_pressed"]
+[connection signal="button_down" from="buttons/settings" to="." method="_on_settings_button_down"]
+[connection signal="button_down" from="buttons/about" to="." method="_on_about_button_down"]
+[connection signal="pressed" from="buttons/quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=4 format=3 uid="uid://b8g7x7638t0md"]
+
+[ext_resource type="Script" path="res://modifiers/upgrades/upgrade_type.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dh1fnqnaebbv1" path="res://modifiers/upgrades/proper_wrenches.png" id="2"]
+[ext_resource type="Script" path="res://modifiers/upgrades/proper_wrenches.gd" id="3"]
+
+[resource]
+script = ExtResource("1")
+weight = 1.0
+name = "Proper wrenches"
+description = "With the power of these Proper Wrenches, you shall be able to build your glorious ICBM marginally faster than ever before!"
+icon = ExtResource("2")
+effect = ExtResource("3")
+modUse = -1

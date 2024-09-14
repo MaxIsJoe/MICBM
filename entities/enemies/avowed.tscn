@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2ovot564qxe"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cebbhjetu5cbm" path="res://entities/enemies/avowed.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b0alkxh13r60q" path="res://entities/enemies/avowed_semi.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d2n3fqqlvuedg" path="res://entities/enemies/avowed_bound.png" id="4"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="5"]
+[ext_resource type="Script" path="res://pieces/flippable.gd" id="6"]
+[ext_resource type="PackedScene" path="res://pieces/visual.tscn" id="7"]
+[ext_resource type="Script" path="res://pieces/barrel_multi.gd" id="8"]
+[ext_resource type="Script" path="res://pieces/barrel.gd" id="9"]
+[ext_resource type="PackedScene" path="res://projectiles/gag.tscn" id="10"]
+[ext_resource type="Script" path="res://fsm/fsm.gd" id="11"]
+[ext_resource type="Script" path="res://fsm/states/hold_distance.gd" id="12"]
+[ext_resource type="Script" path="res://fsm/states/charge.gd" id="13"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 64.0
+
+[node name="avowed" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1")
+default_texture = ExtResource("2")
+semi_texture = ExtResource("3")
+bound_texture = ExtResource("4")
+max_speed = 100.0
+acceleration = 1000.0
+bondage_resistance = 2.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("5")
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -32)
+shape = SubResource("2")
+
+[node name="flippable" type="Node2D" parent="."]
+script = ExtResource("6")
+
+[node name="visual" parent="flippable" instance=ExtResource("7")]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+scale = Vector2(0.5, 0.5)
+
+[node name="barrels" type="Marker2D" parent="."]
+position = Vector2(0, -80)
+script = ExtResource("8")
+
+[node name="barrel0" type="Marker2D" parent="barrels"]
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel1" type="Marker2D" parent="barrels"]
+rotation = 0.785398
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel2" type="Marker2D" parent="barrels"]
+rotation = 1.5708
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel3" type="Marker2D" parent="barrels"]
+rotation = 2.35619
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel4" type="Marker2D" parent="barrels"]
+rotation = -3.14159
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel5" type="Marker2D" parent="barrels"]
+rotation = -2.35619
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel6" type="Marker2D" parent="barrels"]
+rotation = -1.5708
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="barrel7" type="Marker2D" parent="barrels"]
+rotation = -0.785398
+script = ExtResource("9")
+projectile_scene = ExtResource("10")
+projectile_speed = 141.0
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource("11")
+
+[node name="hold_distance" type="Node" parent="fsm"]
+script = ExtResource("12")
+walk_animation = "walk"
+animation = "idle"
+
+[node name="shoot" type="Node" parent="fsm"]
+script = ExtResource("13")
+post_animation = "attack_post"
+animation = "attack_pre"
+next_state = "hold_distance"
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 17.0
+autostart = true
+
+[connection signal="activated" from="fsm/shoot" to="barrels" method="activate"]
+[connection signal="timeout" from="shoot_timer" to="fsm/hold_distance" method="set_state" binds= ["shoot"]]

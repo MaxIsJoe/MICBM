@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/components/upgrade_list.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bskde63tara3b" path="res://ui/components/upgrade_icon.tscn" id="2"]
+
+[node name="upgrade_list" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1")
+icon_scene = ExtResource("2")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=4 format=3 uid="uid://dngit36ch8l4c"]
+
+[ext_resource type="Script" path="res://modifiers/upgrades/upgrade_type.gd" id="1_aey6o"]
+[ext_resource type="Script" path="res://modifiers/upgrades/DommyPower.gd" id="1_qy7ss"]
+[ext_resource type="Texture2D" uid="uid://oncf0wtd50bx" path="res://modifiers/upgrades/chainbreaker.png" id="2_7petv"]
+
+[resource]
+script = ExtResource("1_aey6o")
+weight = 1.0
+name = "Dominate Power"
+description = "Gain a chance to escape a restraint instantly after retraining another victim."
+icon = ExtResource("2_7petv")
+effect = ExtResource("1_qy7ss")
+modUse = -1

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://o1oao6qo3258"]
+
+[ext_resource type="Script" path="res://modifiers/status_effects/status_effect_type.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c5xeb1v3a68tr" path="res://modifiers/status_effects/item_sprites/gagged.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dyktbkroys5ln" path="res://modifiers/status_effects/gagged.png" id="3"]
+[ext_resource type="Script" path="res://modifiers/status_effects/gagged.gd" id="4"]
+
+[resource]
+script = ExtResource("1")
+item_sprite = ExtResource("2")
+name = "Gagged"
+description = "One of your accumulated upgrades is silenced and ineffective."
+icon = ExtResource("3")
+effect = ExtResource("4")
+modUse = 1

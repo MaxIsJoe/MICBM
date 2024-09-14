@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeType" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://modifiers/upgrades/upgrade_type.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b5mrxtmw5imaa" path="res://modifiers/upgrades/chain_bombs.png" id="2"]
+[ext_resource type="Script" path="res://modifiers/upgrades/chain_bombs.gd" id="3"]
+
+[resource]
+script = ExtResource("1")
+weight = 1.0
+name = "Chain bombs"
+description = "Enemies have a chance to drop a bomb when incapacitated. Not bombs made of chains, but a chain made of bombs"
+icon = ExtResource("2")
+effect = ExtResource("3")

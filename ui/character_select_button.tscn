@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctfwa3wslcd24"]
+
+[ext_resource type="Texture2D" uid="uid://4afdalbany46" path="res://entities/player/kim/kim.png" id="1_5cfyf"]
+[ext_resource type="Script" path="res://ui/character_select_button.gd" id="2_geeal"]
+
+[node name="character_select_button" type="Button"]
+custom_minimum_size = Vector2(40, 40)
+icon = ExtResource("1_5cfyf")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_geeal")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

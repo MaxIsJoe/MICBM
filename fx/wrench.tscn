@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://fx/wrench.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dnnsp0qdt0lcw" path="res://fx/break_wrench.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cr81sdls0b55t" path="res://fx/wrench.png" id="3"]
+
+[node name="wrench" type="Node2D"]
+script = ExtResource("1")
+break_scene = ExtResource("2")
+
+[node name="sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3")

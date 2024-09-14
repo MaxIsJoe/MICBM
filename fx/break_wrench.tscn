@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://goif0vq28f76" path="res://fx/break.png" id="1"]
+[ext_resource type="Script" path="res://pieces/transient_sprite.gd" id="2"]
+[ext_resource type="Script" path="res://pieces/rotation_randomiser.gd" id="3"]
+
+[node name="break_wrench" type="Sprite2D"]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1")
+hframes = 8
+script = ExtResource("2")
+
+[node name="rotation_randomiser" type="Node" parent="."]
+script = ExtResource("3")

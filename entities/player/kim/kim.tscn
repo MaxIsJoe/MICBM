@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://co2s03gnwjfjk"]
+
+[ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_ywt52"]
+[ext_resource type="Script" path="res://entities/player/kim/player_normal.gd" id="2_shcqj"]
+[ext_resource type="PackedScene" path="res://props/bomb.tscn" id="3_awnfq"]
+
+[node name="kim" instance=ExtResource("1_ywt52")]
+
+[node name="normal" type="Node" parent="fsm" index="0"]
+script = ExtResource("2_shcqj")
+bomb_scene = ExtResource("3_awnfq")
+max_bombs = 4

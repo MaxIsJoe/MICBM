@@ -1,0 +1,59 @@
+GDRE Tools v0.6.2
+Windows 10.0.22631, NVIDIA GeForce RTX 3050, opengl3
+Extracted 414 files, no errors detected!
+USER WARNING: Converting lossy imports, you may lose fidelity for indicated assets when re-importing upon loading the project
+   at: ImportExporter::_export_imports (modules\gdsdecomp\utility\import_exporter.cpp:58)
+Recreated plugin config for godot_resource_groups
+Did not rewrite import metadata for res://addons/godot_resource_groups/resource_group.svg
+Did not rewrite import metadata for res://icon.svg
+Saved project config project.godot.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     0
+Failed scripts:                         0
+Imported resources for export session:  414
+Successfully converted:                 160
+Lossy:                                  14
+Rewrote metadata:                       0
+Non-importable conversions:             2
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+The following files were converted from an import that was stored lossy.
+You may lose fidelity when re-importing these files upon loading the project.
+res://.godot/imported/resource_group.svg-4ab15486a9423c0a5fbcfc8f79bd7fc4.ctex to res://.assets/addons/godot_resource_groups/resource_group.png
+res://.godot/imported/ICBM.ogg-2a2eb6f446d396361d2327fc23dc7935.oggvorbisstr to res://audio/music/ICBM.ogg
+res://.godot/imported/Superweapon.ogg-b0d1ea3b604700b78f3a2a5fcadc53ca.oggvorbisstr to res://audio/music/Superweapon.ogg
+res://.godot/imported/blast0.wav-85d10164475a1de57f1e68c462f9c781.sample to res://audio/sfx/blast0.wav
+res://.godot/imported/coins0_0.wav-5e5577edbb4c7165192478141cf1d4f5.sample to res://audio/sfx/coins0_0.wav
+res://.godot/imported/coins0_1.wav-b116fbfd0c3c7fc43a3fc9a03c2ab428.sample to res://audio/sfx/coins0_1.wav
+res://.godot/imported/coins0_2.wav-2c0eff1146e6fca6ca1b6cdaf483ae35.sample to res://audio/sfx/coins0_2.wav
+res://.godot/imported/coins0_3.wav-555661fd1b5101f87cc9f4355f82b936.sample to res://audio/sfx/coins0_3.wav
+res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex to res://.assets/icon.png
+res://.godot/imported/EQUIPMENTPRO.TTF-434198bd2c2dc0d089ecfd250f539e5d.fontdata to res://ui/style/EQUIPMENTPRO.TTF
+res://.godot/imported/RALEWAY-ITALIC.TTF-024115b56610a3cab327bd4425d72099.fontdata to res://ui/style/RALEWAY-ITALIC.TTF
+res://.godot/imported/RALEWAY-REGULAR.TTF-ba88bd8db467d15f7fde5cb9acebe26a.fontdata to res://ui/style/RALEWAY-REGULAR.TTF
+res://.godot/imported/RALEWAY-SEMIBOLD.TTF-6703bde6a4191d5c1c9203ebb3e29fcf.fontdata to res://ui/style/RALEWAY-SEMIBOLD.TTF
+res://.godot/imported/RALEWAY-SEMIBOLDITALIC.TTF-fba84571f3057131ad0e7ffde889e5d6.fontdata to res://ui/style/RALEWAY-SEMIBOLDITALIC.TTF
+------
+
+The following files were converted and saved to a non-original path, but did not have their import data rewritten.
+These files will not be re-imported when loading the project.
+res://.godot/imported/resource_group.svg-4ab15486a9423c0a5fbcfc8f79bd7fc4.ctex to res://.assets/addons/godot_resource_groups/resource_group.png
+res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex to res://.assets/icon.png
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.2.1 to edit the project.
+Note: the project may be using a custom version of Godot. Detection for this has not been implemented yet.
+If you find that you have many non-import errors upon opening the project 
+(i.e. scripts or shaders have many errors), use the original game's binary as the export template.
+
+*******************************************************************************
+

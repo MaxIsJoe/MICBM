@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://props/corpse.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://qp5bbh2ddj2" path="res://pieces/visual.tscn" id="2"]
+[ext_resource type="Script" path="res://pieces/destroyer.gd" id="3"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visual:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.498039, 0.498039, 0.498039, 1)]
+}
+script = null
+
+[sub_resource type="Animation" id="2"]
+resource_name = "fade"
+length = 45.0
+step = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visual:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(30, 45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.498039, 0.498039, 0.498039, 1), Color(0.498039, 0.498039, 0.498039, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("destroyer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate"
+}]
+}
+script = null
+
+[sub_resource type="AnimationLibrary" id="3"]
+_data = {
+"RESET": SubResource("1"),
+"fade": SubResource("2")
+}
+script = null
+
+[node name="corpse" type="Node2D"]
+script = ExtResource("1")
+
+[node name="visual" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+modulate = Color(0.498039, 0.498039, 0.498039, 1)
+z_index = -1
+
+[node name="destroyer" type="Node" parent="."]
+script = ExtResource("3")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("3")
+}
+autoplay = "fade"

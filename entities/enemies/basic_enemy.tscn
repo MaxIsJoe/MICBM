@@ -1,0 +1,81 @@
+[gd_scene load_steps=16 format=3 uid="uid://ywipx473ukii"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bwop6wlt1bdgx" path="res://entities/enemies/shibarist.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://ccex6wkja208t" path="res://entities/enemies/shibarist_semi.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dd21n38rbvfdb" path="res://entities/enemies/shibarist_bound.png" id="4"]
+[ext_resource type="Script" path="res://pieces/hurtbox.gd" id="5"]
+[ext_resource type="Script" path="res://pieces/flippable.gd" id="6"]
+[ext_resource type="PackedScene" path="res://pieces/visual.tscn" id="7"]
+[ext_resource type="Script" path="res://pieces/barrel.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://cshaw2forj6ut" path="res://projectiles/coil.tscn" id="9"]
+[ext_resource type="Script" path="res://pieces/rotator_to_player.gd" id="10"]
+[ext_resource type="Script" path="res://fsm/fsm.gd" id="11"]
+[ext_resource type="Script" path="res://fsm/states/hold_distance.gd" id="12"]
+[ext_resource type="Script" path="res://fsm/states/charge.gd" id="13"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 64.0
+
+[node name="basic_enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1")
+default_texture = ExtResource("2")
+semi_texture = ExtResource("3")
+bound_texture = ExtResource("4")
+max_speed = 100.0
+acceleration = 1000.0
+bondage_resistance = 2.0
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="hurtbox" type="Area2D" parent="."]
+script = ExtResource("5")
+
+[node name="shape" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -32)
+shape = SubResource("2")
+
+[node name="flippable" type="Node2D" parent="."]
+script = ExtResource("6")
+
+[node name="visual" parent="flippable" instance=ExtResource("7")]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2")
+
+[node name="barrel" type="Marker2D" parent="flippable"]
+position = Vector2(40, -64)
+script = ExtResource("8")
+projectile_scene = ExtResource("9")
+
+[node name="rotator_to_player" type="Node" parent="flippable/barrel"]
+script = ExtResource("10")
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource("11")
+
+[node name="hold_distance" type="Node" parent="fsm"]
+script = ExtResource("12")
+walk_animation = "walk"
+animation = "idle"
+
+[node name="shoot" type="Node" parent="fsm"]
+script = ExtResource("13")
+post_animation = "attack_post"
+animation = "attack_pre"
+next_state = "hold_distance"
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 9.0
+autostart = true
+
+[connection signal="activated" from="fsm/shoot" to="flippable/barrel" method="activate"]
+[connection signal="timeout" from="shoot_timer" to="fsm/hold_distance" method="set_state" binds= ["shoot"]]
