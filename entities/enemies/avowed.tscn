@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://pieces/visual.tscn" id="7"]
 [ext_resource type="Script" path="res://pieces/barrel_multi.gd" id="8"]
 [ext_resource type="Script" path="res://pieces/barrel.gd" id="9"]
-[ext_resource type="PackedScene" path="res://projectiles/gag.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://ccsslpdotkg1g" path="res://projectiles/gag.tscn" id="10"]
 [ext_resource type="Script" path="res://fsm/fsm.gd" id="11"]
 [ext_resource type="Script" path="res://fsm/states/hold_distance.gd" id="12"]
 [ext_resource type="Script" path="res://fsm/states/charge.gd" id="13"]
@@ -20,7 +20,7 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="2"]
 radius = 64.0
 
-[node name="avowed" type="CharacterBody2D"]
+[node name="avowed" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1

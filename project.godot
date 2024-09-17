@@ -63,6 +63,8 @@ folder_colors={
 [global_group]
 
 projectile="shooty shooty stuff"
+enemy="the feds are trying to tie me up aaaa oooo so scaarryy"
+player="I like women"
 
 [gui]
 

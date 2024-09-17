@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlayerInfo" load_steps=4 format=3 uid="uid://bsw2ixaudo52o"]
+
+[ext_resource type="Texture2D" uid="uid://dwejit8nwf74t" path="res://entities/player/Maxine/maxine.png" id="1_bqp2a"]
+[ext_resource type="PackedScene" uid="uid://de5ykjjgv464o" path="res://entities/player/Maxine/maxine.tscn" id="2_lve3h"]
+[ext_resource type="Script" path="res://entities/player/playerinfo.gd" id="3_l6o5q"]
+
+[resource]
+script = ExtResource("3_l6o5q")
+character_name = "Z"
+character_desc = "[center]\"I see you from above\"[/center]
+
+The sky mistress.
+
++ Wider explosion radius.
+- Unable to move while attacking."
+character_icon = ExtResource("1_bqp2a")
+character_scene = ExtResource("2_lve3h")

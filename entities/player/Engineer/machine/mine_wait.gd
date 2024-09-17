@@ -1,6 +1,6 @@
 extends State
 
-var explosion_radius: float = 151
+@export var explosion_radius: float = 550
 @export var target_teams: Array[int] = [0, 1, 2]
 
 func deploy_bomb():

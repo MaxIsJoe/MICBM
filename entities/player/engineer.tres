@@ -6,7 +6,14 @@
 
 [resource]
 script = ExtResource("1_c3xq8")
-character_name = "Engineer"
-character_desc = "\"It's not self bondage if I force everyone to expierence it, right?\""
+character_name = "Maxine"
+character_desc = "[center]\"Sometimes, there's comfort in knowing you have no control.\"[/center]
+
+[i]The Engineer[/i]
+
++ Faster Silo build time.
++ 3 Different machines to build and deploy.
+- Your own machines can target you.
+- Terrible acceleration speed on the mobile wooden horse."
 character_icon = ExtResource("1_4gdx8")
 character_scene = ExtResource("2_5voq3")

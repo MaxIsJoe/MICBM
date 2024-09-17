@@ -27,7 +27,7 @@ point_count = 3
 offsets = PackedFloat32Array(0, 0.0491803, 0.139344, 0.614754, 0.967213)
 colors = PackedColorArray(0.25098, 0.2, 0.32549, 0, 0.737255, 0.290196, 0.607843, 1, 1, 1, 1, 1, 0.737255, 0.290196, 0.607843, 1, 0.25098, 0.2, 0.32549, 0)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1")

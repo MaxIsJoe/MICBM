@@ -17,8 +17,9 @@ teams = Array[int]([4])
 [node name="visual" parent="flippable" index="0"]
 texture = ExtResource("2_cfcka")
 
-[node name="charge" type="Node" parent="fsm" index="0"]
+[node name="charge" type="Node" parent="fsm" index="0" node_paths=PackedStringArray("charged_state")]
 script = ExtResource("3_tmqwc")
+charged_state = NodePath("../attacking")
 
 [node name="attacking" type="Node" parent="fsm" index="1"]
 script = ExtResource("4_dw182")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnyry4no2j4bm"]
+[gd_scene load_steps=15 format=3 uid="uid://dnyry4no2j4bm"]
 
 [ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_clcvx"]
 [ext_resource type="Texture2D" uid="uid://3hn5cyk2ob8r" path="res://entities/player/Engineer/engineer-default.png" id="2_o3ppt"]
@@ -8,12 +8,15 @@
 [ext_resource type="Script" path="res://entities/player/Engineer/states/engineer_normal.gd" id="6_cog3f"]
 [ext_resource type="Script" path="res://entities/player/Engineer/states/engineer_building.gd" id="7_nueui"]
 [ext_resource type="PackedScene" uid="uid://dbpb3g4nf4pd3" path="res://entities/player/Engineer/ui/build_ui.tscn" id="8_pysi2"]
+[ext_resource type="PackedScene" uid="uid://cb0b5y3o8tuuq" path="res://entities/player/Engineer/machine/mine.tscn" id="9_m4dnr"]
+[ext_resource type="PackedScene" uid="uid://bk8ys6lf56c47" path="res://entities/player/Engineer/machine/turret.tscn" id="10_bqj30"]
+[ext_resource type="PackedScene" uid="uid://d0n6a0fn4vcsy" path="res://entities/player/Engineer/machine/engineer_drone.tscn" id="11_gka5t"]
 
 [sub_resource type="Curve" id="Curve_n73op"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_0oi7y"]
+[sub_resource type="CurveTexture" id="CurveTexture_cq5t0"]
 curve = SubResource("Curve_n73op")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qasb"]
@@ -21,7 +24,7 @@ particle_flag_disable_z = true
 spread = 110.275
 scale_min = 2.0
 scale_max = 6.0
-alpha_curve = SubResource("CurveTexture_0oi7y")
+alpha_curve = SubResource("CurveTexture_cq5t0")
 turbulence_noise_strength = 0.57
 
 [node name="Engineer" instance=ExtResource("1_clcvx")]
@@ -53,5 +56,6 @@ process_material = SubResource("ParticleProcessMaterial_8qasb")
 
 [node name="BuildUI" parent="." index="11" instance=ExtResource("8_pysi2")]
 visible = false
+machines = Array[PackedScene]([ExtResource("9_m4dnr"), ExtResource("10_bqj30"), ExtResource("11_gka5t")])
 
 [connection signal="timeout" from="reload_timer" to="fsm/normal" method="gain_bomb"]

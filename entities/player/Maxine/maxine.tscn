@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://djnq8ysocd0eg" path="res://entities/player/Maxine/maxine_legssbound.png" id="4_ft5pl"]
 [ext_resource type="Texture2D" uid="uid://u4ffeg8gj1uq" path="res://entities/player/Maxine/maxine_bothbound.png" id="5_72krp"]
 [ext_resource type="Script" path="res://entities/player/Maxine/states/maxine_normal_state.gd" id="6_rdfcp"]
-[ext_resource type="PackedScene" path="res://props/bomb.tscn" id="7_wa0t8"]
+[ext_resource type="PackedScene" uid="uid://b0pv2ltbv26pm" path="res://props/bomb.tscn" id="7_wa0t8"]
 [ext_resource type="Script" path="res://entities/player/Maxine/states/maxine_mark_control.gd" id="8_af2v6"]
 [ext_resource type="Script" path="res://entities/player/Maxine/marker.gd" id="8_wnh45"]
 [ext_resource type="PackedScene" uid="uid://bsr64upk00bkc" path="res://fx/explosion.tscn" id="9_4lmj7"]

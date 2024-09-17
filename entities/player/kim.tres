@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("1_7815s")
 character_name = "Kim"
-character_desc = "The original playable character."
+character_desc = "[center]The original playable character.[/center]
+
+The vanilla expierence. No modifications."
 character_icon = ExtResource("1_jm2u7")
 character_scene = ExtResource("2_7qbro")

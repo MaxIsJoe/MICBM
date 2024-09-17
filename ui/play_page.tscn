@@ -55,7 +55,7 @@ texture = ExtResource("2_vimwo")
 stretch_mode = 3
 
 [node name="character_desc" type="RichTextLabel" parent="list"]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]Character Description"
