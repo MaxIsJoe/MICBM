@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://dktjenn7e5ul3"]
+
+[ext_resource type="Script" path="res://entities/player/maxine/ui/build_item.gd" id="1_xrd8y"]
+[ext_resource type="Texture2D" uid="uid://se8m4ls5p2wk" path="res://entities/player/maxine/ui/arrow-down.png" id="2_f1rox"]
+[ext_resource type="Texture2D" uid="uid://nev3mdenbobl" path="res://entities/player/maxine/ui/arrow-left.png" id="3_e1ipi"]
+[ext_resource type="Texture2D" uid="uid://ds2mrg0eie7ha" path="res://entities/player/maxine/ui/arrow-right.png" id="4_211yx"]
+[ext_resource type="Texture2D" uid="uid://b80l5pmcxp7h1" path="res://entities/player/maxine/ui/arrow-up.png" id="5_fbshr"]
+
+[node name="BuildItem" type="ColorRect"]
+custom_minimum_size = Vector2(250, 45)
+mouse_filter = 2
+color = Color(0.082226, 0.076688, 0.126368, 1)
+script = ExtResource("1_xrd8y")
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 102.0
+offset_bottom = 34.0
+text = "BUILD ITEM"
+
+[node name="inputshow" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 2.0
+offset_right = 209.0
+offset_bottom = 42.0
+alignment = 1
+
+[node name="controlls-holder" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="move_down" type="TextureRect" parent="controlls-holder"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_left = 100.0
+offset_top = 2.0
+offset_right = 132.0
+offset_bottom = 42.0
+texture = ExtResource("2_f1rox")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="move_left" type="TextureRect" parent="controlls-holder"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_left = 136.0
+offset_top = 2.0
+offset_right = 168.0
+offset_bottom = 42.0
+texture = ExtResource("3_e1ipi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="move_right" type="TextureRect" parent="controlls-holder"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_left = 172.0
+offset_top = 2.0
+offset_right = 204.0
+offset_bottom = 42.0
+texture = ExtResource("4_211yx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="move_up" type="TextureRect" parent="controlls-holder"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_left = 208.0
+offset_top = 2.0
+offset_right = 240.0
+offset_bottom = 42.0
+texture = ExtResource("5_fbshr")
+expand_mode = 1
+stretch_mode = 5

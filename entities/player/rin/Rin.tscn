@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://de5ykjjgv464o"]
+
+[ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_nxo3p"]
+[ext_resource type="Texture2D" uid="uid://dwejit8nwf74t" path="res://entities/player/rin/Rin.png" id="2_jffgv"]
+[ext_resource type="Texture2D" uid="uid://wim85r1hhheg" path="res://entities/player/rin/rin_armsbound.png" id="3_xmxdc"]
+[ext_resource type="Texture2D" uid="uid://djnq8ysocd0eg" path="res://entities/player/rin/rin_legssbound.png" id="4_isq5v"]
+[ext_resource type="Texture2D" uid="uid://u4ffeg8gj1uq" path="res://entities/player/rin/rin_bothbound.png" id="5_gemc1"]
+[ext_resource type="Script" path="res://entities/player/rin/states/rin_normal_state.gd" id="6_rgy46"]
+[ext_resource type="PackedScene" uid="uid://b0pv2ltbv26pm" path="res://props/bomb.tscn" id="7_hxsra"]
+[ext_resource type="Script" path="res://entities/player/rin/states/rin_mark_control.gd" id="8_n2bvq"]
+[ext_resource type="PackedScene" uid="uid://bsr64upk00bkc" path="res://fx/explosion.tscn" id="9_w8yb2"]
+[ext_resource type="Script" path="res://entities/player/rin/marker.gd" id="10_hsbjm"]
+[ext_resource type="Texture2D" uid="uid://bggf8geqw6ddw" path="res://entities/player/rin/marker-visual.png" id="11_4mb70"]
+[ext_resource type="Script" path="res://entities/player/rin/rotate_sprite.gd" id="12_f8s1g"]
+
+[node name="Rin" instance=ExtResource("1_nxo3p")]
+build_range = 514.0
+base_camera_zoom = 0.7
+default_image = ExtResource("2_jffgv")
+armbound_image = ExtResource("3_xmxdc")
+legbound_image = ExtResource("4_isq5v")
+bothbound_image = ExtResource("5_gemc1")
+max_speed = 450.0
+acceleration = 2250.0
+
+[node name="visual" parent="flippable" index="0"]
+texture = ExtResource("2_jffgv")
+
+[node name="cam" parent="camholder" index="0"]
+position_smoothing_enabled = true
+
+[node name="normal" type="Node" parent="fsm" index="0"]
+script = ExtResource("6_rgy46")
+bomb_scene = ExtResource("7_hxsra")
+auto_proceed = false
+
+[node name="attacking" type="Node" parent="fsm" index="1" node_paths=PackedStringArray("marker", "original_state")]
+script = ExtResource("8_n2bvq")
+hit = ExtResource("9_w8yb2")
+marker = NodePath("../../marker")
+original_state = NodePath("../normal")
+auto_proceed = false
+
+[node name="reload_timer" parent="." index="8"]
+wait_time = 3.0
+
+[node name="marker" type="CharacterBody2D" parent="." index="10"]
+visible = false
+script = ExtResource("10_hsbjm")
+max_speed = 500.0
+
+[node name="visual" type="Sprite2D" parent="marker" index="0"]
+modulate = Color(1, 1, 1, 0.792157)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("11_4mb70")
+script = ExtResource("12_f8s1g")
+
+[connection signal="timeout" from="reload_timer" to="fsm/normal" method="gain_bomb"]

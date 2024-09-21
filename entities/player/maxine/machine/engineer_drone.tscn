@@ -1,0 +1,106 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0n6a0fn4vcsy"]
+
+[ext_resource type="PackedScene" uid="uid://b1wnqw761iybt" path="res://entities/entity_base.tscn" id="1_iq5nn"]
+[ext_resource type="Texture2D" uid="uid://m3wbklt0tmva" path="res://entities/player/maxine/machine/drone.png" id="2_7qif3"]
+[ext_resource type="Script" path="res://entities/entity.gd" id="2_ug8aa"]
+[ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="3_ewsdd"]
+[ext_resource type="Script" path="res://entities/player/maxine/machine/charging_machine.gd" id="3_g1mfl"]
+[ext_resource type="Script" path="res://entities/player/maxine/machine/drone_searching.gd" id="4_nrjsj"]
+[ext_resource type="Script" path="res://entities/player/maxine/machine/drone_attacking.gd" id="6_1gsvj"]
+[ext_resource type="PackedScene" uid="uid://ci8cb75frgkel" path="res://projectiles/blindfold.tscn" id="7_kiy4m"]
+[ext_resource type="PackedScene" uid="uid://cshaw2forj6ut" path="res://projectiles/coil.tscn" id="8_30rbg"]
+[ext_resource type="PackedScene" uid="uid://ccsslpdotkg1g" path="res://projectiles/gag.tscn" id="9_cwaky"]
+
+[sub_resource type="Curve" id="Curve_2yngb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0oi7y"]
+curve = SubResource("Curve_2yngb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4qodh"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 110.275
+gravity = Vector3(0, 9.8, 0)
+scale_min = 2.0
+scale_max = 6.0
+alpha_curve = SubResource("CurveTexture_0oi7y")
+turbulence_noise_strength = 0.57
+
+[sub_resource type="Curve" id="Curve_v4s8p"]
+_data = [Vector2(0, 0.363446), 0.0, 0.0, 0, 0, Vector2(0.979042, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Drone" instance=ExtResource("1_iq5nn")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_ug8aa")
+
+[node name="hurtbox" parent="." index="1"]
+collision_layer = 0
+collision_mask = 0
+teams = Array[int]([])
+
+[node name="shape" parent="hurtbox" index="0"]
+position = Vector2(0, 0)
+
+[node name="visual" parent="flippable" index="0"]
+position = Vector2(0, 0)
+texture = ExtResource("2_7qif3")
+
+[node name="charging" type="Node" parent="fsm" index="0" node_paths=PackedStringArray("charged_state")]
+script = ExtResource("3_g1mfl")
+charged_state = NodePath("../searching")
+charge_per_second = 10.0
+
+[node name="searching" type="Node" parent="fsm" index="1" node_paths=PackedStringArray("shooting_ray", "attacking_stage")]
+script = ExtResource("4_nrjsj")
+shooting_ray = NodePath("../../shooting_cast")
+attacking_stage = NodePath("../drone_attack")
+
+[node name="drone_attack" type="Node" parent="fsm" index="2" node_paths=PackedStringArray("shooting_ray", "searching_state", "shooting_timer")]
+script = ExtResource("6_1gsvj")
+projectiles = Array[PackedScene]([ExtResource("7_kiy4m"), ExtResource("8_30rbg"), ExtResource("9_cwaky")])
+projectile_speed = 1250.0
+target_teams = Array[int]([1, 2, 3, 0])
+shooting_ray = NodePath("../../shooting_cast")
+searching_state = NodePath("../searching")
+shooting_timer = NodePath("../../charge-progress/timer")
+
+[node name="smoke" type="GPUParticles2D" parent="." index="4"]
+position = Vector2(0, 15)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_4qodh")
+lifetime = 2.0
+trail_enabled = true
+
+[node name="shooting_cast" type="RayCast2D" parent="." index="5"]
+position = Vector2(0, 17)
+target_position = Vector2(0, 362)
+collision_mask = 15
+
+[node name="line_2d" type="Line2D" parent="shooting_cast" index="0"]
+points = PackedVector2Array(0, 0, 0, 362)
+width = 5.0
+width_curve = SubResource("Curve_v4s8p")
+default_color = Color(0.932616, 0.754798, 0.868282, 1)
+
+[node name="shooting_timer" type="Timer" parent="." index="6"]
+wait_time = 0.5
+autostart = true
+
+[node name="charge-progress" type="ProgressBar" parent="." index="7"]
+offset_left = 42.0
+offset_top = -68.0
+offset_right = 60.0
+offset_bottom = 57.0
+theme = ExtResource("3_ewsdd")
+fill_mode = 3
+show_percentage = false
+
+[node name="timer" type="Timer" parent="charge-progress" index="0"]
+wait_time = 0.1
+
+[connection signal="timeout" from="shooting_timer" to="fsm/drone_attack" method="_on_shooting_timer_timeout"]
+[connection signal="timeout" from="charge-progress/timer" to="fsm/charging" method="_on_timer_timeout"]
