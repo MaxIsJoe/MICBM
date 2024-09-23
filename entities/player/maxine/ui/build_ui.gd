@@ -33,9 +33,17 @@ func event_to_input_string(event: InputEventKey) -> String:
 		return "move_left"
 	elif event.keycode == KEY_D:
 		return "move_right"
+	elif event.keycode == JOY_BUTTON_DPAD_RIGHT:
+		return "move_right"
+	elif event.keycode == JOY_BUTTON_DPAD_LEFT:
+		return "move_left"
+	elif event.keycode == JOY_BUTTON_DPAD_DOWN:
+		return "move_down"
+	elif event.keycode == JOY_BUTTON_DPAD_UP:
+		return "move_up"
 	return ""
 	
-# Helper function to convert InputEventJoypadMotion to a string (e.g., "joystick_left", "joystick_right")
+	
 func joypad_motion_to_input_string(event: InputEventJoypadMotion) -> String:
 	if event.axis == JOY_AXIS_LEFT_Y and event.axis_value < -0.4:
 		return "move_up"

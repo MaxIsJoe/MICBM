@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://0ft28uu0mlme"]
+[gd_scene load_steps=16 format=3 uid="uid://0ft28uu0mlme"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dkod2l073dco0" path="res://splashes/failure.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://4afdalbany46" path="res://entities/player/kim/kim.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bcf3q1o7uue61" path="res://entities/player/kim/kim_armbound.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://c8o45enbr18p5" path="res://entities/player/kim/kim_legbound.png" id="6"]
@@ -31,7 +30,6 @@ colors = PackedColorArray(0.25098, 0.2, 0.32549, 0, 0.737255, 0.290196, 0.607843
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1")
-failure_scene = ExtResource("3")
 default_image = ExtResource("4")
 armbound_image = ExtResource("5")
 legbound_image = ExtResource("6")

@@ -5,7 +5,6 @@ extends Entity
 @export var build_range: float = 768.0
 
 @export var base_camera_zoom: float = 0.5
-@export var failure_scene: PackedScene
 
 @export_category("Images")
 @export var default_image: Texture2D = null
@@ -43,9 +42,12 @@ func _process(delta: float) -> void:
 		%visual.play_animation("idle")
 
 func _input(event: InputEvent) -> void:
-	if false and event.is_action_pressed("test"):
+	if Engine.is_editor_hint() and event.is_action_pressed("test"):
 		var new_screen = Game.get_object("upgrade_screen").instantiate()
 		Game.deploy_ui_instance(new_screen, Vector2())
+	
+	if event.is_action("ui_end"):
+		_on_death_gauge_filled()
 
 
 func gain_modifier(what: Modifier):
@@ -108,5 +110,7 @@ func _on_modifiers_changed():
 	set_camera_zoom()
 
 func _on_death_gauge_filled() -> void:
+	if Game.run == null: return
+	Engine.time_scale = 0.25
 	Game.end_run()
-	get_tree().change_scene_to_packed(failure_scene)
+	Game.ui.Loss()
