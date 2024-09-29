@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://pieces/visual.tscn" id="9"]
 [ext_resource type="Script" path="res://pieces/hurtbox.gd" id="10"]
 [ext_resource type="PackedScene" path="res://pieces/cam.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://ui/components/death_gauge.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://djnurv6sp4q7j" path="res://ui/components/death_gauge.tscn" id="12"]
 [ext_resource type="Script" path="res://fsm/fsm.gd" id="13"]
 
 [sub_resource type="CircleShape2D" id="1"]

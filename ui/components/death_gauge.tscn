@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://djnurv6sp4q7j"]
 
 [ext_resource type="Script" path="res://ui/components/death_gauge.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bykqyxkyc1dly" path="res://ui/components/death_gauge_bac.png" id="2"]
@@ -16,6 +16,6 @@ offset_bottom = 192.0
 step = 0.01
 value = 50.0
 fill_mode = 8
+radial_initial_angle = 180.0
 texture_under = ExtResource("2")
 texture_progress = ExtResource("3")
-radial_initial_angle = 180.0

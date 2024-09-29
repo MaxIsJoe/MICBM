@@ -1,7 +1,6 @@
 class_name Run
 extends RefCounted
 
-
 var money: float = 0: set = set_money
 var max_progress: float = 400
 var progress: float = 0: set = set_progress

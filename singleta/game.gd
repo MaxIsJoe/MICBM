@@ -1,6 +1,5 @@
 extends Node
 
-
 var gameholder: Control = null
 var world: Node2D = null
 var ui: Control = null

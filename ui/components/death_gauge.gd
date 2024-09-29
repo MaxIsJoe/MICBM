@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var limit: float = 6
 @export var fill_speed: float = 1
 @export var shake_speed: float = 4
@@ -27,6 +26,8 @@ func _process(delta: float) -> void:
 	
 	position = position + Vector2(randf()*shake_speed*ratio, 0).rotated(randf() * PI*2)
 	position = position.lerp(Vector2(), unshake_speed*delta)
+	
+	Viberation.Vibe(actual_value / 100)
 	
 	if ratio > fill_amount:
 		filled.emit()

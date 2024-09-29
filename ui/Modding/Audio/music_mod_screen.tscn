@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://clnulnxv807ky"]
+
+[ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1_1dia5"]
+
+[node name="MusicModScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1dia5")
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scroll_container" type="ScrollContainer" parent="panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="v_box_container" type="VBoxContainer" parent="panel/scroll_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="label" type="Label" parent="panel/scroll_container/v_box_container"]
+layout_mode = 2
+text = "Music Manager"
+horizontal_alignment = 1
+
+[node name="create_songpack" type="Button" parent="panel/scroll_container/v_box_container"]
+layout_mode = 2
+text = "Create Song Pack"
+
+[node name="h_separator" type="HSeparator" parent="panel/scroll_container/v_box_container"]
+layout_mode = 2
+
+[node name="pack_list" type="VBoxContainer" parent="panel/scroll_container/v_box_container"]
+layout_mode = 2
+
+[node name="pack_item" type="Panel" parent="panel/scroll_container/v_box_container/pack_list"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="panel/scroll_container/v_box_container/pack_list/pack_item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="check_button" type="CheckButton" parent="panel/scroll_container/v_box_container/pack_list/pack_item/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pack Name (Disabled)"

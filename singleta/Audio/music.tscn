@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0vefpcmybipg"]
+
+[ext_resource type="Script" path="res://singleta/Audio/music.gd" id="1_56tv8"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_56tv8")
+
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="."]
