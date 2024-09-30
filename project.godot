@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="ICBM"
+config/version="1.0.0-m.1"
 run/main_scene="res://ui/title/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=90
@@ -23,6 +24,7 @@ Util="*res://singleta/util.gd"
 Events="*res://singleta/events.gd"
 GlobalSound="*res://singleta/global_sound.gd"
 Viberation="*res://singleta/viberation.gd"
+Music="*res://singleta/Audio/music.tscn"
 
 [display]
 

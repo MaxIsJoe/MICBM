@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://r6g5p3cgklbk"]
+[gd_scene load_steps=28 format=3 uid="uid://r6g5p3cgklbk"]
 
 [ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1"]
 [ext_resource type="Script" path="res://ui/title/main_menu.gd" id="2"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bnkyvmhf8js6" path="res://ui/link_patreon.png" id="16"]
 [ext_resource type="PackedScene" uid="uid://ccrgoofit65y2" path="res://ui/options.tscn" id="17_o0xa3"]
 [ext_resource type="PackedScene" uid="uid://dns6do57c24kx" path="res://ui/play_page.tscn" id="18_smre0"]
+[ext_resource type="PackedScene" uid="uid://clnulnxv807ky" path="res://ui/Modding/Audio/music_mod_screen.tscn" id="20_y41fl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6hbxd"]
 shader = ExtResource("4_iucsf")
@@ -531,6 +532,9 @@ I do not. But if you'd like to support my work, you can check out this page:
 
 [node name="play_page" parent="Pages" instance=ExtResource("18_smre0")]
 visible = false
+layout_mode = 1
+
+[node name="MusicModScreen" parent="." instance=ExtResource("20_y41fl")]
 layout_mode = 1
 
 [connection signal="pressed" from="buttons/play" to="." method="_on_play_pressed"]

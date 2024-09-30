@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://clnulnxv807ky"]
+[gd_scene load_steps=3 format=3 uid="uid://clnulnxv807ky"]
 
 [ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1_1dia5"]
+[ext_resource type="Script" path="res://ui/Modding/Audio/music_mod_screen.gd" id="2_nyohi"]
 
 [node name="MusicModScreen" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1dia5")
+script = ExtResource("2_nyohi")
 
 [node name="panel" type="Panel" parent="."]
 layout_mode = 1
@@ -41,25 +43,29 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Create Song Pack"
 
+[node name="create_songpack_ui" type="VBoxContainer" parent="panel/scroll_container/v_box_container"]
+layout_mode = 2
+
 [node name="h_separator" type="HSeparator" parent="panel/scroll_container/v_box_container"]
 layout_mode = 2
 
 [node name="pack_list" type="VBoxContainer" parent="panel/scroll_container/v_box_container"]
 layout_mode = 2
 
-[node name="pack_item" type="Panel" parent="panel/scroll_container/v_box_container/pack_list"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="h_box_container" type="HBoxContainer" parent="panel/scroll_container/v_box_container/pack_list/pack_item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="check_button" type="CheckButton" parent="panel/scroll_container/v_box_container/pack_list/pack_item/h_box_container"]
+[node name="check_button" type="CheckButton" parent="panel/scroll_container/v_box_container/pack_list"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pack Name (Disabled)"
+
+[node name="file_dialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(600, 600)
+ok_button_text = "Select"
+file_mode = 0
+access = 2
+filters = PackedStringArray("mp3")
+
+[connection signal="button_down" from="panel/scroll_container/v_box_container/create_songpack" to="." method="_on_create_songpack_button_down"]
+[connection signal="toggled" from="panel/scroll_container/v_box_container/pack_list/check_button" to="." method="_on_check_button_toggled"]
+[connection signal="file_selected" from="file_dialog" to="." method="_on_file_dialog_file_selected"]

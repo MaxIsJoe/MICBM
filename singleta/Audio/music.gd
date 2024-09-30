@@ -1,7 +1,7 @@
 class_name MusicManager
 extends Node
 
-var song_packs : Array = []
+var song_packs = []
 var current_pack : SongPackData
 var current_song : Dictionary = {}
 
@@ -27,22 +27,37 @@ func remove_song_pack(pack_name: String):
 			save_song_packs()
 			return
 
+
+func add_default_pack():
+	var default : SongPackData = SongPackData.new()
+	default.PackName = "Original OST"
+	default.Songs["MainMenu"] = "res://audio/music/Superweapon.ogg"
+	default.Songs["Ingame"] = "res://audio/music/ICBM.ogg"
+	song_packs.append(default)
+
 # Load song packs from a file
 func load_song_packs():
-	var file = FileAccess.open("user://song_packs.json", FileAccess.READ)
-	if file:
-		var json_string = file.get_as_text()
-		var loaded_packs = JSON.parse_string(json_string)
-		if loaded_packs.error == OK:
-			song_packs = loaded_packs.result
-		file.close()
+	var config_file := ConfigFile.new()
+	var error := config_file.load("user://song_packs.ini")
+	if error:
+		print("An error happened while loading data: ", error) 
+		return
+	for loadedPack in config_file.get_sections():
+		var pack : SongPackData = SongPackData.new()
+		pack.PackName = loadedPack
+		pack.Songs = config_file.get_value(loadedPack, "Songs")
+		song_packs.append(pack)
+	print(song_packs)
 
 # Save the current song packs to a file
 func save_song_packs():
-	var file = FileAccess.open("user://song_packs.json", FileAccess.WRITE)
-	var json_string = JSON.stringify(song_packs)
-	file.store_string(json_string)
-	file.close()
+	var config_file := ConfigFile.new()
+	for pack in song_packs:
+		config_file.set_value(pack.PackName, "PackName", pack.PackName)
+		config_file.set_value(pack.PackName, "Songs", pack.Songs)
+	var error := config_file.save("user://song_packs.ini")
+	if error:
+		print("An error happened while saving data: ", error)
 
 # Set the currently selected song pack by name
 func set_current_pack(pack_name: String):
