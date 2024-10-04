@@ -13,18 +13,22 @@ func _ready() -> void:
 	generate_pack_options()
 
 func generate_pack_options():
-	for pack in Music.song_packs:
+	for i in range(len(Music.song_packs)):
+		var pack = Music.song_packs[i]
 		var pack_button : CheckButton = CheckButton.new()
 		pack_button.text = pack.PackName
+		pack_button.name = str(i)  # Store the index as the name for reference
+		if pack_button.text == OptionsManager.options["last_song_pack"]:
+			pack_button.button_pressed = true
+		pack_button.connect("toggled", Callable(self, "_on_pack_toggled").bind(pack.PackName, pack_button))  # Bind the index and button itself
 		pack_list.add_child(pack_button)
+		
 
 func generate_pack_creator_fields():
-	# Clear any existing children (in case the function is called multiple times)
 	var newPack = SongPackData.new()
 	for child in create_songpack_ui.get_children():
 		child.queue_free()
 
-	# Create a label and LineEdit for the PackName
 	var pack_name_label : Label = Label.new()
 	pack_name_label.text = "Pack Name:"
 	create_songpack_ui.add_child(pack_name_label)
@@ -36,16 +40,13 @@ func generate_pack_creator_fields():
 	
 	song_inputs["PackNameInput"] = pack_name_input
 
-	# Create input fields for each song in the Songs dictionary
 	for song_name in newPack.Songs.keys():
-		# Create an HBoxContainer to place the LineEdit and File Picker button horizontally
 		var song_hbox = HBoxContainer.new()
 
 		var song_label = Label.new()
 		song_label.text = song_name + ":"
 		create_songpack_ui.add_child(song_label)
 
-		# LineEdit for song path
 		var song_input = LineEdit.new()
 		song_input.custom_minimum_size = Vector2(350, 10)
 		song_input.text = ""
@@ -54,22 +55,26 @@ func generate_pack_creator_fields():
 		song_hbox.add_child(song_input)
 		song_inputs[song_name] = song_input
 
-		# Button to trigger file picker
 		var file_picker_button = Button.new()
 		file_picker_button.text = "Browse"
 		file_picker_button.name = song_name + "_FilePicker"
 		file_picker_button.connect("pressed", Callable(self, "_on_browse_button_pressed").bind(song_name, song_input))
 		song_hbox.add_child(file_picker_button)
 
-		# Add the HBoxContainer to the UI
 		create_songpack_ui.add_child(song_hbox)
 		
 	create_songpack.hide()
 	var save_button = Button.new()
 	save_button.text = "Save"
 	save_button.name = "SaveButton"
-	save_button.connect("pressed", Callable(self, "_on_save_button_pressed"))  # Save functionality to be added later
+	save_button.connect("pressed", Callable(self, "_on_save_button_pressed"))
 	create_songpack_ui.add_child(save_button)
+	
+
+func disable_other_toggles(active_button: CheckButton) -> void:
+	for child in pack_list.get_children():
+		if child != active_button and child is CheckButton:
+			child.button_pressed = false
 
 func _on_create_songpack_button_down() -> void:
 	generate_pack_creator_fields()
@@ -97,8 +102,7 @@ func _on_save_button_pressed() -> void:
 	Music.song_packs.append(new_song_pack)
 	Music.save_song_packs()
 
-
-func _on_check_button_toggled(toggled_on: bool) -> void:
-	if toggled_on == true:
-		for button in pack_list.get_children():
-			button.button_pressed = false
+func _on_pack_toggled(pressed: bool, pack_name: String, button: CheckButton) -> void:
+	if pressed:
+		Music.set_current_pack(pack_name)
+		disable_other_toggles(button)

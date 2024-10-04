@@ -25,6 +25,7 @@ Events="*res://singleta/events.gd"
 GlobalSound="*res://singleta/global_sound.gd"
 Viberation="*res://singleta/viberation.gd"
 Music="*res://singleta/Audio/music.tscn"
+OptionsManager="*res://singleta/Options/options.gd"
 
 [display]
 

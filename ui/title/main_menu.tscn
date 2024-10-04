@@ -271,7 +271,7 @@ _data = {
 "shake": SubResource("5")
 }
 
-[node name="main_menu" type="Control" node_paths=PackedStringArray("pages_holder", "page_options", "page_about", "page_play")]
+[node name="main_menu" type="Control" node_paths=PackedStringArray("pages_holder", "page_options", "page_about", "page_play", "page_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -286,6 +286,7 @@ pages_holder = NodePath("Pages")
 page_options = NodePath("Pages/options")
 page_about = NodePath("Pages/about")
 page_play = NodePath("Pages/play_page")
+page_music = NodePath("Pages/MusicModScreen")
 
 [node name="background-tile" type="TextureRect" parent="."]
 visible = false
@@ -417,6 +418,10 @@ text = "SETTINGS"
 layout_mode = 2
 text = "ABOUT"
 
+[node name="custom_music" type="Button" parent="buttons"]
+layout_mode = 2
+text = "CUSTOM MUSIC"
+
 [node name="quit" type="Button" parent="buttons"]
 layout_mode = 2
 size_flags_vertical = 6
@@ -534,10 +539,12 @@ I do not. But if you'd like to support my work, you can check out this page:
 visible = false
 layout_mode = 1
 
-[node name="MusicModScreen" parent="." instance=ExtResource("20_y41fl")]
+[node name="MusicModScreen" parent="Pages" instance=ExtResource("20_y41fl")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="buttons/play" to="." method="_on_play_pressed"]
 [connection signal="button_down" from="buttons/settings" to="." method="_on_settings_button_down"]
 [connection signal="button_down" from="buttons/about" to="." method="_on_about_button_down"]
+[connection signal="button_down" from="buttons/custom_music" to="." method="_on_custom_music_button_down"]
 [connection signal="pressed" from="buttons/quit" to="." method="_on_quit_pressed"]

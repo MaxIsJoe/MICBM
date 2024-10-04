@@ -52,20 +52,14 @@ layout_mode = 2
 [node name="pack_list" type="VBoxContainer" parent="panel/scroll_container/v_box_container"]
 layout_mode = 2
 
-[node name="check_button" type="CheckButton" parent="panel/scroll_container/v_box_container/pack_list"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Pack Name (Disabled)"
-
 [node name="file_dialog" type="FileDialog" parent="."]
 title = "Open a File"
 initial_position = 2
 size = Vector2i(600, 600)
-ok_button_text = "Select"
+ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("mp3")
 
 [connection signal="button_down" from="panel/scroll_container/v_box_container/create_songpack" to="." method="_on_create_songpack_button_down"]
-[connection signal="toggled" from="panel/scroll_container/v_box_container/pack_list/check_button" to="." method="_on_check_button_toggled"]
 [connection signal="file_selected" from="file_dialog" to="." method="_on_file_dialog_file_selected"]

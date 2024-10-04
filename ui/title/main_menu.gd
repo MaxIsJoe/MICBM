@@ -8,6 +8,7 @@ extends Control
 @export var page_options: Control = null
 @export var page_about: Control = null
 @export var page_play: Control = null
+@export var page_music: Control = null
 
 @onready var background_tile: TextureRect = $"background-tile"
 
@@ -50,6 +51,7 @@ func show_page_section(page_to_show: Control):
 	page_about.hide()
 	page_options.hide()
 	page_play.hide()
+	page_music.hide()
 	page_to_show.show()
 	if pages_holder.position != original_pages_holder_pos:
 		pages_holder.show()
@@ -83,3 +85,7 @@ func tween_alpha_to_show(tween : Tween, child : Control):
 	var original = child.self_modulate
 	child.self_modulate = Color(0, 0, 0, 0)
 	tween.tween_property(child, "self_modulate", original, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_custom_music_button_down() -> void:
+	show_page_section(page_music)
