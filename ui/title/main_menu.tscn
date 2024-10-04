@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://r6g5p3cgklbk"]
+[gd_scene load_steps=27 format=3 uid="uid://r6g5p3cgklbk"]
 
 [ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1"]
 [ext_resource type="Script" path="res://ui/title/main_menu.gd" id="2"]
-[ext_resource type="AudioStream" uid="uid://bald3sod53jhx" path="res://audio/music/Superweapon.ogg" id="3"]
 [ext_resource type="Shader" path="res://shaders/pan.gdshader" id="4_iucsf"]
 [ext_resource type="Texture2D" uid="uid://o3pyywoscv8a" path="res://ui/title/missile.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://brp2bgi5sregk" path="res://ui/title/icbm-tile.png" id="5_xg7eh"]
@@ -281,7 +280,6 @@ grow_vertical = 2
 theme = ExtResource("1")
 script = ExtResource("2")
 imagery_position = Vector2(0.5, 0.25)
-menu_music = ExtResource("3")
 pages_holder = NodePath("Pages")
 page_options = NodePath("Pages/options")
 page_about = NodePath("Pages/about")

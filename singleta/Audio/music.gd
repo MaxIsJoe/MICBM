@@ -3,7 +3,7 @@ extends Node
 
 var song_packs = []
 var current_pack : SongPackData
-var current_song_id_to_play : String = "MainMenu"
+var current_song_id_to_play : String = ""
 
 
 @onready var audio_stream_player: AudioStreamPlayer = $audio_stream_player
@@ -51,9 +51,14 @@ func load_song_packs():
 		pack.Songs = config_file.get_value(loadedPack, "Songs")
 		song_packs.append(pack)
 	if song_packs.size() == 0 || song_packs.any(func(pack): return pack.PackName == "Original OST") == false:
+		print("Default song pack missing, adding it.")
 		add_default_pack()
 		set_current_pack("Original OST")
-	print(song_packs)
+	if(OptionsManager.initalized):
+		set_current_pack(OptionsManager.options["last_song_pack"])
+	else:
+		OptionsManager._load_options()
+		set_current_pack(OptionsManager.options["last_song_pack"])
 
 # Save the current song packs to a file
 func save_song_packs():
@@ -72,7 +77,7 @@ func set_current_pack(pack_name: String):
 			current_pack = pack
 			on_pack_changed.emit()
 			OptionsManager.set_songpack_setting(pack_name)
-			print("pack has been set to ", pack_name)
+			print_debug("pack has been set to ", pack_name)
 			return
 	printerr("No pack found.")
 
@@ -85,6 +90,9 @@ func get_song_packs() -> Array:
 
 # Play a song from the currently selected pack by its name
 func play_song(song_name: String):
+	if song_name == "":
+		audio_stream_player.stop()
+		return
 	if current_pack:
 		for song in current_pack.Songs:
 			if song == song_name:
@@ -95,8 +103,7 @@ func play_song(song_name: String):
 
 # Stop the currently playing song
 func stop_song():
-	if audio_stream_player.playing:
-		audio_stream_player.stop()
+	audio_stream_player.stop()
 
 # Private function to handle playing a song from its file path
 func _play_song_path(path: String):
@@ -128,3 +135,4 @@ func _play_song_path(path: String):
 func _on_song_pack_changed():
 	audio_stream_player.stop()
 	play_song(current_song_id_to_play)
+	OptionsManager.set_songpack_setting(current_pack.PackName)

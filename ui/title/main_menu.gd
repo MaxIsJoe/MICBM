@@ -3,7 +3,6 @@ extends Control
 
 @export var flash_duration: float = 1
 @export var imagery_position: Vector2 = Vector2(.5, .5)
-@export var menu_music: AudioStream = null
 @export var pages_holder: Control = null
 @export var page_options: Control = null
 @export var page_about: Control = null
@@ -25,13 +24,12 @@ func _process(_delta: float) -> void:
 func arrive():
 	flash()
 	
-	#%textbox.show()
 	%buttons.show()
 	%links.show()
 	%play.grab_focus()
 	background_tile.show()
 	
-	GlobalSound.play_music(menu_music)
+	Music.play_song("MainMenu")
 	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)

@@ -32,6 +32,7 @@ OptionsManager="*res://singleta/Options/options.gd"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/size/mode=2
+window/stretch/aspect="keep_width"
 
 [dotnet]
 

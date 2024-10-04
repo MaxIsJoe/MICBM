@@ -7,7 +7,7 @@ extends Node2D
 func _ready() -> void:
 	Game.world = self
 	if music:
-		GlobalSound.play_music(music)
+		Music.play_song("Ingame")
 	var player = Game.next_player_to_spawn.instantiate()
 	add_child(player)
 	player.global_position = player_spawn.global_position

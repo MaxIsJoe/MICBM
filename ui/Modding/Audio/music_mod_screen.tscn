@@ -59,7 +59,7 @@ size = Vector2i(600, 600)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("mp3")
+filters = PackedStringArray("*.mp3", "*.ogg", "*.wav")
 
 [connection signal="button_down" from="panel/scroll_container/v_box_container/create_songpack" to="." method="_on_create_songpack_button_down"]
 [connection signal="file_selected" from="file_dialog" to="." method="_on_file_dialog_file_selected"]

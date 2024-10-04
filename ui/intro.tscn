@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://b2h2txkjlfg4u"]
 
-[ext_resource type="Theme" uid="uid://b14dliq0dwgnh" path="res://ui/style/theme_main.tres" id="1"]
+[ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1"]
 [ext_resource type="Script" path="res://ui/intro.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://blgd0k73jh72w" path="res://gameholder.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://r05ujw550uvf" path="res://gameholder.tscn" id="3"]
 [ext_resource type="Script" path="res://pieces/centred_label.gd" id="4"]
 
 [sub_resource type="Animation" id="1"]
@@ -19,7 +19,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
-script = null
 
 [sub_resource type="Animation" id="2"]
 resource_name = "arrive"
@@ -35,14 +34,12 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 0.1, 0.9, 1.0]
 }
-script = null
 
 [sub_resource type="AnimationLibrary" id="3"]
 _data = {
 "RESET": SubResource("1"),
 "arrive": SubResource("2")
 }
-script = null
 
 [node name="intro" type="Control"]
 layout_mode = 3

@@ -13,9 +13,11 @@ func _ready() -> void:
 	generate_pack_options()
 
 func generate_pack_options():
+	for item in pack_list.get_children():
+		item.queue_free()
 	for i in range(len(Music.song_packs)):
 		var pack = Music.song_packs[i]
-		var pack_button : CheckButton = CheckButton.new()
+		var pack_button : CheckBox = CheckBox.new()
 		pack_button.text = pack.PackName
 		pack_button.name = str(i)  # Store the index as the name for reference
 		if pack_button.text == OptionsManager.options["last_song_pack"]:
@@ -71,9 +73,9 @@ func generate_pack_creator_fields():
 	create_songpack_ui.add_child(save_button)
 	
 
-func disable_other_toggles(active_button: CheckButton) -> void:
+func disable_other_toggles(active_button: CheckBox) -> void:
 	for child in pack_list.get_children():
-		if child != active_button and child is CheckButton:
+		if child != active_button and child is CheckBox:
 			child.button_pressed = false
 
 func _on_create_songpack_button_down() -> void:
@@ -101,8 +103,12 @@ func _on_save_button_pressed() -> void:
 	print("New Song Pack Data Created:", new_song_pack)
 	Music.song_packs.append(new_song_pack)
 	Music.save_song_packs()
+	generate_pack_options()
+	for child in create_songpack_ui.get_children():
+		child.queue_free()
+	create_songpack.show()
 
-func _on_pack_toggled(pressed: bool, pack_name: String, button: CheckButton) -> void:
+func _on_pack_toggled(pressed: bool, pack_name: String, button: CheckBox) -> void:
 	if pressed:
-		Music.set_current_pack(pack_name)
 		disable_other_toggles(button)
+		Music.set_current_pack(pack_name)
