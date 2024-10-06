@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlayerInfo" load_steps=4 format=3 uid="uid://da5y7k4xv8djo"]
+
+[ext_resource type="Texture2D" uid="uid://det3p8lgxl4n3" path="res://entities/player/stella/stella-default.png" id="1_mcab1"]
+[ext_resource type="Script" path="res://entities/player/playerinfo.gd" id="1_uhdaw"]
+[ext_resource type="PackedScene" uid="uid://1hkh2uht26iq" path="res://entities/player/stella/stella.tscn" id="2_yil0k"]
+
+[resource]
+script = ExtResource("1_uhdaw")
+character_name = "Stella"
+character_desc = "[center]\"....\"[/center]
+
+The Rouge Enforcer.
+
++ Hurl projectiles quickly where you're going.
+- Long Reload Time."
+character_icon = ExtResource("1_mcab1")
+character_scene = ExtResource("2_yil0k")

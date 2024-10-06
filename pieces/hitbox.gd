@@ -43,6 +43,9 @@ func hit_being(what):
 	var direction = (what.global_position - global_position).normalized()
 	var this_radial_knockback = radial_knockback * direction
 	var this_directional_knockback = directional_knockback.rotated(global_rotation)
-	what.take_knockback( this_radial_knockback + this_directional_knockback )
+	what.take_knockback(this_radial_knockback + this_directional_knockback)
 	
 	what.hit.emit()
+
+func set_target_teams(what: Array[int]):
+	teams = what

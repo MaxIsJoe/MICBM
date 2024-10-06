@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://1hkh2uht26iq"]
+[gd_scene load_steps=9 format=3 uid="uid://1hkh2uht26iq"]
 
 [ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_pp48q"]
 [ext_resource type="Texture2D" uid="uid://det3p8lgxl4n3" path="res://entities/player/stella/stella-default.png" id="2_7cyy2"]
 [ext_resource type="Texture2D" uid="uid://c4g7l5mkd5cgh" path="res://entities/player/stella/stella-arms-bound.png" id="3_kg7h3"]
 [ext_resource type="Texture2D" uid="uid://bemmw3yi37ojm" path="res://entities/player/stella/stella-legs-bound.png" id="4_g5dvj"]
 [ext_resource type="Texture2D" uid="uid://hrhwh77xwqky" path="res://entities/player/stella/stella-both-bound.png" id="5_6e2xm"]
+[ext_resource type="Script" path="res://entities/player/stella/states/default.gd" id="6_p2wmm"]
+[ext_resource type="PackedScene" uid="uid://cshaw2forj6ut" path="res://projectiles/coil.tscn" id="7_od35e"]
+[ext_resource type="PackedScene" uid="uid://ccsslpdotkg1g" path="res://projectiles/gag.tscn" id="8_2j8n1"]
 
 [node name="stella" instance=ExtResource("1_pp48q")]
 default_image = ExtResource("2_7cyy2")
@@ -14,3 +17,15 @@ bothbound_image = ExtResource("5_6e2xm")
 
 [node name="visual" parent="flippable" index="0"]
 texture = ExtResource("2_7cyy2")
+
+[node name="default" type="Node" parent="fsm" index="0"]
+script = ExtResource("6_p2wmm")
+projectile_scenes = Array[PackedScene]([ExtResource("7_od35e"), ExtResource("8_2j8n1")])
+target_teams = Array[int]([1, 2])
+max_ammo = 8
+projectile_throw_speed = 4.0
+
+[node name="reload_timer" parent="." index="8"]
+wait_time = 5.0
+
+[connection signal="timeout" from="reload_timer" to="fsm/default" method="_on_reload_timer_timeout"]

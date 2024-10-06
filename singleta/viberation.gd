@@ -26,11 +26,10 @@ func Feedback(strength: float, duration: float = 0.25):
 func _vibe_tick():
 	if current_strength <= 0: return
 	Input.stop_joy_vibration(current_strength)
-	Input.start_joy_vibration(current_active_controller, 
+	Input.start_joy_vibration(current_active_controller,
 		current_strength if current_strength > 0.75 else 0, # Weak Motter
 		current_strength, # Strong Mottor
 	 	vibe_tick_duration + 0.1)
 	current_strength = current_strength - (current_strength * 0.25)
 	if current_strength < 0.005:
 		current_strength = 0
-	print(current_strength)
