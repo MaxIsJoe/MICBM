@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://1hkh2uht26iq"]
+
+[ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_pp48q"]
+[ext_resource type="Texture2D" uid="uid://det3p8lgxl4n3" path="res://entities/player/stella/stella-default.png" id="2_7cyy2"]
+[ext_resource type="Texture2D" uid="uid://c4g7l5mkd5cgh" path="res://entities/player/stella/stella-arms-bound.png" id="3_kg7h3"]
+[ext_resource type="Texture2D" uid="uid://bemmw3yi37ojm" path="res://entities/player/stella/stella-legs-bound.png" id="4_g5dvj"]
+[ext_resource type="Texture2D" uid="uid://hrhwh77xwqky" path="res://entities/player/stella/stella-both-bound.png" id="5_6e2xm"]
+
+[node name="stella" instance=ExtResource("1_pp48q")]
+default_image = ExtResource("2_7cyy2")
+armbound_image = ExtResource("3_kg7h3")
+legbound_image = ExtResource("4_g5dvj")
+bothbound_image = ExtResource("5_6e2xm")
+
+[node name="visual" parent="flippable" index="0"]
+texture = ExtResource("2_7cyy2")

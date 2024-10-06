@@ -13,6 +13,11 @@ signal on_pack_changed
 func _ready():
 	on_pack_changed.connect(_on_song_pack_changed)
 	load_song_packs()
+	_register_commands()
+	
+func _register_commands():
+	LimboConsole.register_command(set_current_pack, "music_set_current_songpack", "Sets what music to play.")
+	LimboConsole.register_command(play_song, "music_play_song", "Play a track using an ID.")
 
 # Add a new song pack
 func add_song_pack(pack_name: String, songs: Dictionary):
@@ -112,16 +117,19 @@ func _play_song_path(path: String):
 	match file_extension:
 		"ogg":
 			stream = AudioStreamOggVorbis.load_from_file(path)
+			stream.loop = true
 		"mp3":
 			var file = FileAccess.open(path, FileAccess.READ)
 			var sound = AudioStreamMP3.new()
 			sound.data = file.get_buffer(file.get_length())
 			stream = sound
+			stream.loop = true
 		"wav":
 			var file = FileAccess.open(path, FileAccess.READ)
 			var sound = AudioStreamWAV.new()
 			sound.data = file.get_buffer(file.get_length())
 			stream = sound
+			stream.loop = true
 		_:
 			print("Unsupported file format: ", file_extension)
 			return
