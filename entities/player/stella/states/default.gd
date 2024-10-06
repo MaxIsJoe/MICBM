@@ -5,6 +5,7 @@ extends State
 @export var target_teams: Array[int] = [0, 1, 2]
 @export var max_ammo: int = 6
 @export var projectile_throw_speed: float = 2.0
+@export var reload_time: float = 5
 var current_ammo: int = max_ammo
 
 func _step(delta: float):
@@ -25,7 +26,9 @@ func attack():
 		new_bomb.velocity = father.velocity * projectile_throw_speed
 		new_bomb.father = father
 		new_bomb.scale += Vector2(0.5, 0.5)
+		new_bomb.penetrations = 4
 		new_bomb.set_target_teams(target_teams)
+		new_bomb.on_projectile_hit.connect(_explode_on_hit)
 		Game.deploy_instance(new_bomb, father.global_position)
 		current_ammo -= 1
 		if %reload_timer.is_stopped():
@@ -56,4 +59,9 @@ func tractutate(delta):
 
 
 func _on_reload_timer_timeout() -> void:
+	%reload_timer.wait_time = reload_time
 	gain_ammo()
+
+func _explode_on_hit(_this_hitbox):
+	if %reload_timer.time_left >= 0.25:
+		%reload_timer.start(%reload_timer.time_left - (%reload_timer.time_left * 0.55))

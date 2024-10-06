@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 				var this_hitbox: Hitbox = overlapping_hitboxes[i]
 				if this_hitbox.active:
 					hit.emit(this_hitbox)
-					this_hitbox.hit.emit(self)
+					this_hitbox.on_projectile_hit.emit(self)
 					this_hitbox.hit_being(father)
 					invuln_time = invuln_duration
 					break

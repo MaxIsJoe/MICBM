@@ -15,7 +15,7 @@ var daze_time: float = 0.0
 signal upgrades_changed
 signal status_effects_changed
 signal modifiers_changed
-signal hit
+signal on_projectile_hit
 
 var father = self
 
@@ -27,7 +27,7 @@ func _ready() -> void:
 	modifier_list.name = "modifier_list"
 	add_child(modifier_list)
 	modifiers_changed.connect(_on_modifiers_changed)
-	hit.connect(_on_hit)
+	on_projectile_hit.connect(_on_hit)
 
 func _process(delta: float) -> void:
 	frictutate(delta)
@@ -104,7 +104,7 @@ func get_max_speed() -> float:
 	if modification >= max_modification:
 		be_fully_bound()
 	
-	return max_speed * (1-modification)
+	return max_speed * (1 - modification)
 
 func get_removal_speed() -> float:
 	if daze_time > 0:

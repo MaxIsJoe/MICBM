@@ -24,6 +24,7 @@ projectile_scenes = Array[PackedScene]([ExtResource("7_od35e"), ExtResource("8_2
 target_teams = Array[int]([1, 2])
 max_ammo = 8
 projectile_throw_speed = 4.0
+reload_time = null
 
 [node name="reload_timer" parent="." index="8"]
 wait_time = 5.0

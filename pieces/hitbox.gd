@@ -12,9 +12,7 @@ extends Area2D
 var previous_hits: Array[Hurtbox] = []
 var father: Entity = null
 
-
-signal hit
-
+signal on_projectile_hit
 
 func _ready() -> void:
 	set_collision_layer_value(1, false)
@@ -45,7 +43,7 @@ func hit_being(what):
 	var this_directional_knockback = directional_knockback.rotated(global_rotation)
 	what.take_knockback(this_radial_knockback + this_directional_knockback)
 	
-	what.hit.emit()
+	what.on_projectile_hit.emit()
 
 func set_target_teams(what: Array[int]):
 	teams = what

@@ -2,15 +2,18 @@ class_name MusicManager
 extends Node
 
 var song_packs = []
-var current_pack : SongPackData
-var current_song_id_to_play : String = ""
+var current_pack: SongPackData
+var current_song_id_to_play: String = ""
 
 
 @onready var audio_stream_player: AudioStreamPlayer = $audio_stream_player
+var bus_layout: AudioBusLayout = preload("res://audio/audio_bus.tres")
 
 signal on_pack_changed
 
 func _ready():
+	AudioServer.set_bus_layout(bus_layout)
+	audio_stream_player.bus = "Music"
 	on_pack_changed.connect(_on_song_pack_changed)
 	load_song_packs()
 	_register_commands()
@@ -37,7 +40,7 @@ func remove_song_pack(pack_name: String):
 
 
 func add_default_pack():
-	var default : SongPackData = SongPackData.new()
+	var default: SongPackData = SongPackData.new()
 	default.PackName = "Original OST"
 	default.Songs["MainMenu"] = "res://audio/music/Superweapon.ogg"
 	default.Songs["Ingame"] = "res://audio/music/ICBM.ogg"
@@ -48,10 +51,10 @@ func load_song_packs():
 	var config_file := ConfigFile.new()
 	var error := config_file.load("user://song_packs.ini")
 	if error:
-		print("An error happened while loading data: ", error) 
+		print("An error happened while loading data: ", error)
 		return
 	for loadedPack in config_file.get_sections():
-		var pack : SongPackData = SongPackData.new()
+		var pack: SongPackData = SongPackData.new()
 		pack.PackName = loadedPack
 		pack.Songs = config_file.get_value(loadedPack, "Songs")
 		song_packs.append(pack)
@@ -59,7 +62,7 @@ func load_song_packs():
 		print("Default song pack missing, adding it.")
 		add_default_pack()
 		set_current_pack("Original OST")
-	if(OptionsManager.initalized):
+	if (OptionsManager.initalized):
 		set_current_pack(OptionsManager.options["last_song_pack"])
 	else:
 		OptionsManager._load_options()
@@ -77,7 +80,7 @@ func save_song_packs():
 
 # Set the currently selected song pack by name
 func set_current_pack(pack_name: String):
-	for pack : SongPackData in song_packs:
+	for pack: SongPackData in song_packs:
 		if pack.PackName == pack_name:
 			current_pack = pack
 			on_pack_changed.emit()
