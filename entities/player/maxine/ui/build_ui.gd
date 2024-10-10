@@ -11,6 +11,23 @@ var current_inputs: Dictionary = {}
 signal building_done(machine_to_build: PackedScene)
 signal input_happened(keys: Dictionary)
 
+func _ready():
+	await get_tree().create_timer(0.2).timeout
+	_register_commands()
+
+func _exit_tree() -> void:
+	LimboConsole.unregister_command("maxine_spawn_machine")
+	
+func _register_commands():
+	var index = -1
+	var building_desc = ""
+	for m in machines:
+		index += 1
+		building_desc += "\n" + str(index) + " - " + m.resource_path
+	LimboConsole.register_command(emit_build_by_index, "maxine_spawn_machine", ("spawns building" + building_desc))
+	
+func emit_build_by_index(machine: int):
+	building_done.emit(machines[machine])
 
 func _input(event: InputEvent) -> void:
 	if input_requirements.size() == 0: return
@@ -20,7 +37,7 @@ func _input(event: InputEvent) -> void:
 			input_for_build_item(build_item, input_string)
 	elif event is InputEventJoypadMotion:
 		var input_string = joypad_motion_to_input_string(event)
-		for build_item in current_inputs.keys(): #TODO: FIX THIS
+		for build_item in current_inputs.keys(): # TODO: FIX THIS
 			input_for_build_item(build_item, input_string)
 
 
@@ -45,13 +62,13 @@ func event_to_input_string(event: InputEventKey) -> String:
 	
 	
 func joypad_motion_to_input_string(event: InputEventJoypadMotion) -> String:
-	if event.axis == JOY_AXIS_LEFT_Y and event.axis_value < -0.4:
+	if event.axis == JOY_AXIS_LEFT_Y and event.axis_value <= -0.4:
 		return "move_up"
-	elif event.axis == JOY_AXIS_LEFT_Y and event.axis_value > 0.4:
+	elif event.axis == JOY_AXIS_LEFT_Y and event.axis_value >= 0.4:
 		return "move_down"
-	elif event.axis == JOY_AXIS_LEFT_X and event.axis_value < -0.4:
+	elif event.axis == JOY_AXIS_LEFT_X and event.axis_value <= -0.4:
 		return "move_left"
-	elif event.axis == JOY_AXIS_LEFT_X and event.axis_value > 0.4:
+	elif event.axis == JOY_AXIS_LEFT_X and event.axis_value >= 0.4:
 		return "move_right"
 	return ""
 
@@ -65,7 +82,7 @@ func generate_new_inputs():
 		machine_name = temp.name
 		var new_build_item = buildItem.instantiate()
 		var required_inputs: Array[String] = []
-		for i in range(randi() % 3 + 2):  
+		for i in range(randi() % 3 + 2):
 			required_inputs.append(get_random_input())
 		input_requirements[new_build_item] = required_inputs
 		current_inputs[new_build_item] = []
