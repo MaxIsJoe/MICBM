@@ -6,7 +6,6 @@ const MODS_FOLDER_PATH := "Mods/"
 var detected_mods: Dictionary = {}
 
 func _ready():
-	print(root)
 	detect_mods()
 
 
@@ -30,7 +29,8 @@ func detect_mods():
 			var modinfo := reader.read_file("Mods/info.ini")
 			reader.close()
 			var config = ConfigFile.new()
-			config.load(modinfo.get_string_from_ascii())
+			print(modinfo.get_string_from_ascii())
+			config.parse(modinfo.get_string_from_ascii())
 			print(config.get_sections())
 			detected_mods[file_path] = file_path
 		
