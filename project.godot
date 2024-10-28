@@ -27,13 +27,13 @@ Viberation="*res://singleta/viberation.gd"
 Music="*res://singleta/Audio/music.tscn"
 OptionsManager="*res://singleta/Options/options.gd"
 LimboConsole="*res://addons/limbo_console/limbo_console.gd"
+ModLoader="*res://singleta/Mods/mod_loader.gd"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/size/mode=2
-window/stretch/aspect="keep_width"
 
 [dotnet]
 
@@ -179,4 +179,5 @@ limbo_console_toggle={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0.141176, 0.133333, 0.203922, 1)

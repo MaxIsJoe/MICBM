@@ -99,12 +99,15 @@ func get_max_speed() -> float:
 	var max_modification: float = 0.95
 	var context: ModifierContext = ModifierContext.new()
 	context.context = context.ctx.ACCELERATION
-	var modification := modifier_list.calculate_modifiers(context).value / bondage_resistance
+	var modification := calculate_speed_modification(context)
 	modification = min(modification, max_modification)
 	if modification >= max_modification:
 		be_fully_bound()
 	
 	return max_speed * (1 - modification)
+
+func calculate_speed_modification(context: ModifierContext) -> float:
+	return modifier_list.calculate_modifiers(context).value / bondage_resistance
 
 func get_removal_speed() -> float:
 	if daze_time > 0:

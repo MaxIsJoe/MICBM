@@ -3,6 +3,7 @@ extends Control
 
 func _ready() -> void:
 	Game.gameholder = self
+	Game.start_run()
 	match_window_size()
 	get_viewport().size_changed.connect(match_window_size)
 

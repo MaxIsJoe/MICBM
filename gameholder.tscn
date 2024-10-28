@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://r05ujw550uvf"]
+[gd_scene load_steps=7 format=3 uid="uid://r05ujw550uvf"]
 
 [ext_resource type="Script" path="res://gameholder.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1vsmy0oq7wsf" path="res://tools/test_world.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://ik3h7edmvxlc" path="res://ui/ui.tscn" id="3"]
+[ext_resource type="Shader" path="res://shaders/colorswap.gdshader" id="4_eu1lj"]
+[ext_resource type="Texture2D" uid="uid://dqeegds6tdcyf" path="res://data/gradients/hue_red.tres" id="5_vwdbf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hmlyi"]
+shader = ExtResource("4_eu1lj")
+shader_parameter/mix_strength = 1.0
+shader_parameter/opacity = 1.0
+shader_parameter/blend_mode = 2
+shader_parameter/hue_shift = 4.75e-08
+shader_parameter/gradient_texture = ExtResource("5_vwdbf")
 
 [node name="gameholder" type="Control"]
 layout_mode = 3
@@ -36,3 +46,14 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="palswap" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_hmlyi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

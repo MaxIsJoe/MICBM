@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkod2l073dco0"]
+[gd_scene load_steps=12 format=3 uid="uid://dkod2l073dco0"]
 
 [ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1"]
 [ext_resource type="Script" path="res://splashes/end_splash.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bdff8ii0htol3" path="res://splashes/failure_0.png" id="3"]
 [ext_resource type="Script" path="res://pieces/centred_label.gd" id="4"]
+[ext_resource type="Script" path="res://splashes/stats_screen.gd" id="5_w3ql5"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -22,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("text_holder/egress:modulate")
+tracks/1/path = NodePath("Stats/panel/content/egress:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -55,6 +56,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("text_holder/continue:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("text_holder/continue:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="2"]
 resource_name = "arrive"
@@ -74,7 +99,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("text_holder/egress:modulate")
+tracks/1/path = NodePath("Stats/panel/content/egress:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -107,11 +132,96 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("text_holder/continue:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.03333, 7.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("text_holder/continue:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="3"]
 _data = {
 "RESET": SubResource("1"),
 "arrive": SubResource("2")
+}
+
+[sub_resource type="Animation" id="Animation_2r4sy"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Stats/panel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.509801, 0.509801, 0.509801, 1), Color(1, 1, 1, 1), Color(0.479205, 0.479205, 0.479205, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../Stats/panel:pivot_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_hxtbg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Stats/panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Stats/panel:pivot_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8tinv"]
+_data = {
+"RESET": SubResource("Animation_hxtbg"),
+"show": SubResource("Animation_2r4sy")
 }
 
 [node name="failure" type="Control"]
@@ -171,11 +281,10 @@ base_text = "And so it was that the dire machinations of Kim the Careless were p
 
 She would later be found guilty of International Mega-terrorism, and sentenced to six months of community service or a €500 fine."
 
-[node name="egress" type="Button" parent="text_holder"]
+[node name="continue" type="Button" parent="text_holder"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Egress"
+text = "Continue"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -184,4 +293,52 @@ libraries = {
 autoplay = "arrive"
 speed_scale = 5.0
 
-[connection signal="pressed" from="text_holder/egress" to="." method="_on_egress_pressed"]
+[node name="Stats" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 357.0
+grow_vertical = 2
+script = ExtResource("5_w3ql5")
+
+[node name="panel" type="Panel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="content" type="VBoxContainer" parent="Stats/panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="rich_text_label" type="RichTextLabel" parent="Stats/panel/content"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]CAUGHT"
+
+[node name="stat_list" type="VBoxContainer" parent="Stats/panel/content"]
+layout_mode = 2
+
+[node name="egress" type="Button" parent="Stats/panel/content"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Egress"
+
+[node name="stats_anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../animator")
+libraries = {
+"": SubResource("AnimationLibrary_8tinv")
+}
+
+[connection signal="button_down" from="text_holder/continue" to="." method="_on_continue_button_down"]
+[connection signal="pressed" from="Stats/panel/content/egress" to="." method="_on_egress_pressed"]
