@@ -1,4 +1,4 @@
-class_name Options 
+class_name Options
 extends Node
 
 var options = {
@@ -23,8 +23,7 @@ func _save_options():
 	for option in options:
 		config.set_value(option, "value", options[option])
 	var result = config.save(save_path)
-	print("saving: ", options)
-	if result != OK: 
+	if result != OK:
 		print("An error happened while trying to save settings")
 
 func _load_options():
@@ -34,7 +33,6 @@ func _load_options():
 		for option in options:
 			if config.has_section_key(option, "value"):
 				options[option] = config.get_value(option, "value")
-		print_debug(options)
 	else:
 		print("Error loading options: ", error)
 	initalized = true

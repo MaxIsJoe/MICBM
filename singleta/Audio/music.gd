@@ -85,7 +85,6 @@ func set_current_pack(pack_name: String):
 			current_pack = pack
 			on_pack_changed.emit()
 			OptionsManager.set_songpack_setting(pack_name)
-			print_debug("pack has been set to ", pack_name)
 			return
 	printerr("No pack found.")
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ctfwa3wslcd24" path="res://ui/character_select_button.tscn" id="1_6f4nf"]
 [ext_resource type="Script" path="res://ui/play_page.gd" id="1_ggb0s"]
-[ext_resource type="Resource" uid="uid://mwqa7wlwfvnm" path="res://entities/player/CharacterInfo/player_characters.tres" id="2_fx63e"]
-[ext_resource type="PackedScene" path="res://ui/intro.tscn" id="2_iuad8"]
+[ext_resource type="Resource" uid="uid://mwqa7wlwfvnm" path="res://Mods/entites/player/CharacterInfo/player_characters_mod.tres" id="2_fx63e"]
+[ext_resource type="PackedScene" uid="uid://b2h2txkjlfg4u" path="res://ui/intro.tscn" id="2_iuad8"]
 [ext_resource type="Texture2D" uid="uid://4afdalbany46" path="res://entities/player/kim/kim.png" id="2_vimwo"]
 
 [node name="play_page" type="Control" node_paths=PackedStringArray("character_name", "character_desc", "character_icon", "character_buttons_grid")]
