@@ -22,6 +22,7 @@ func explode():
 	new_explosion.radius = explosion_radius * this_explosion_scale
 	new_explosion.father = father
 	Game.deploy_instance(new_explosion, global_position)
+	Game.get_run().record_explosion_strength(this_explosion_scale)
 	
 	queue_free()
 

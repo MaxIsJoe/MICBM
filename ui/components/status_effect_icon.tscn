@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://b6tipawsy3o4l"]
 
 [ext_resource type="Script" path="res://ui/components/status_effect_icon.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://d2u8w63edi7bh" path="res://ui/components/status_effect_bac_purp.png" id="2"]
@@ -29,9 +29,9 @@ grow_vertical = 2
 step = 0.01
 value = 25.0
 fill_mode = 8
+radial_initial_angle = 180.0
 texture_under = ExtResource("2")
 texture_progress = ExtResource("3")
-radial_initial_angle = 180.0
 
 [node name="sprite" type="TextureRect" parent="."]
 unique_name_in_owner = true

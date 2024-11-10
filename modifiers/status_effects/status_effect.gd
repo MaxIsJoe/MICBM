@@ -13,4 +13,6 @@ func _process(delta: float) -> void:
 		max_duration = max(duration, max_duration)
 		duration -= removal_speed * delta
 		if duration <= 0:
+			if father is Player:
+				Game.get_run().add_time_restraint_removed()
 			queue_free()

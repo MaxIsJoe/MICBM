@@ -118,6 +118,7 @@ func _on_modifiers_changed():
 func _on_death_gauge_filled() -> void:
 	if Game.run == null: return
 	Engine.time_scale = 0.25
+	Game.get_run().game_stats[Run.GAMTESTAT_KEY_TIME_SURVIVED] = Game.get_time_passed()
 	Game.ui.Loss()
 
 func _on_hit(_attacker_name):

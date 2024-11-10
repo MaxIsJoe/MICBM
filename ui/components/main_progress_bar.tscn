@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://cnr18cmdh2pmw"]
 
 [ext_resource type="Texture2D" uid="uid://bq8q0asqp5611" path="res://ui/components/progress_bar_bac.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://yug2cg8yqrva" path="res://ui/components/progress_bar_filling.png" id="2"]

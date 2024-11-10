@@ -23,6 +23,8 @@ var next_player_to_spawn: PackedScene = null
 
 const pause_menu_scene: PackedScene = preload("res://ui/pause_menu.tscn")
 
+var start_time: float
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -42,12 +44,12 @@ func get_run() -> Run:
 	run = Run.new()
 	return run
 
-
 func start_run():
 	run = Run.new()
+	start_time = Time.get_ticks_msec()
 
-func end_run():
-	run = null
+func get_time_passed() -> float:
+	return (Time.get_ticks_msec() - start_time) / 1000.0
 
 func update_pause_status():
 	get_tree().paused = get_tree().get_nodes_in_group("pausers").size() > 0
@@ -81,6 +83,6 @@ func activate_all_modifiers(context: ModifierContext) -> ModifierResult:
 	
 	return output
 
-func shake_cam(amount: float, direction: float = randf() * PI*2):
+func shake_cam(amount: float, direction: float = randf() * PI * 2):
 	if is_instance_valid(camera):
 		camera.position += Vector2(amount, 0).rotated(direction)

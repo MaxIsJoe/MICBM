@@ -58,6 +58,7 @@ func gain_modifier(what: Modifier):
 		upgrades_changed.emit()
 		what.tree_exiting.connect(_on_upgrade_slain)
 	if what is StatusEffect:
+		what.father = self
 		status_effects_changed.emit()
 		what.tree_exiting.connect(_on_status_effect_slain)
 	

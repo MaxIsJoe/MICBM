@@ -5,14 +5,14 @@ var money: float = 0: set = set_money
 var max_progress: float = 400
 var progress: float = 0: set = set_progress
 
-var GAMTESTAT_KEY_ENEMIES_BOUND: String = "Enemies Bound"
-var GAMTESTAT_KEY_RESTRAINTS_FREED: String = "Times Player Freed Themselves"
-var GAMTESTAT_KEY_TOTAL_MONEY_COLLECTED: String = "Total Money Collected"
-var GAMTESTAT_KEY_TIMES_PLAYER_HURT: String = "Times Player Was Bound"
-var GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED: String = "Times Friendly Fire Happened"
-var GAMTESTAT_KEY_STRONGEST_EXPLOSION_RECORDED: String = "Strongest Explosion Recorded"
-var GAMTESTAT_KEY_TIME_SURVIVED: String = "Time Survived"
-var GAMTESTAT_KEY_LAST_ATTACKER: String = "Last Attacker"
+const GAMTESTAT_KEY_ENEMIES_BOUND: String = "Enemies Bound"
+const GAMTESTAT_KEY_RESTRAINTS_FREED: String = "Times Player Freed Themselves"
+const GAMTESTAT_KEY_TOTAL_MONEY_COLLECTED: String = "Total Money Collected"
+const GAMTESTAT_KEY_TIMES_PLAYER_HURT: String = "Times Player Was Bound"
+const GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED: String = "Times Friendly Fire Happened"
+const GAMTESTAT_KEY_STRONGEST_EXPLOSION_RECORDED: String = "Strongest Explosion Recorded"
+const GAMTESTAT_KEY_TIME_SURVIVED: String = "Time Survived"
+const GAMTESTAT_KEY_LAST_ATTACKER: String = "Last Attacker"
 
 var game_stats: Dictionary = {
 	GAMTESTAT_KEY_ENEMIES_BOUND: 0,
@@ -36,10 +36,13 @@ func set_money(what: float):
 
 func set_progress(what: float):
 	progress = what
+	Events.progress_changed.emit()
 	if progress > max_progress:
+		game_stats[GAMTESTAT_KEY_TIME_SURVIVED] = Game.get_time_passed()
 		Game.get_tree().change_scene_to_packed(win_scene)
 
 func set_attacker(last_attacker: String):
+	add_time_player_hurt()
 	if last_attacker == Game.player.name:
 		game_stats[GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED] = game_stats[GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED] + 1
 		return
