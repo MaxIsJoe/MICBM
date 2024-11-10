@@ -39,11 +39,11 @@ func set_progress(what: float):
 	if progress > max_progress:
 		Game.get_tree().change_scene_to_packed(win_scene)
 
-func set_attacker(last_attacker: Entity):
-	if last_attacker == Game.player:
+func set_attacker(last_attacker: String):
+	if last_attacker == Game.player.name:
 		game_stats[GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED] = game_stats[GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED] + 1
 		return
-	game_stats[GAMTESTAT_KEY_LAST_ATTACKER] = last_attacker.name
+	game_stats[GAMTESTAT_KEY_LAST_ATTACKER] = last_attacker
 
 func add_time_restraint_removed():
 	game_stats[GAMTESTAT_KEY_RESTRAINTS_FREED] = game_stats[GAMTESTAT_KEY_RESTRAINTS_FREED] + 1

@@ -51,10 +51,11 @@ position = Vector2(0, -32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2")
 
-[node name="barrel" type="Marker2D" parent="flippable"]
+[node name="barrel" type="Marker2D" parent="flippable" node_paths=PackedStringArray("parent")]
 position = Vector2(40, -64)
 script = ExtResource("8")
 projectile_scene = ExtResource("9")
+parent = NodePath("../..")
 
 [node name="rotator_to_player" type="Node" parent="flippable/barrel"]
 script = ExtResource("10")

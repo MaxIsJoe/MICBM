@@ -54,52 +54,60 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(0, -80)
 script = ExtResource("8")
 
-[node name="barrel0" type="Marker2D" parent="barrels"]
+[node name="barrel0" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel1" type="Marker2D" parent="barrels"]
+[node name="barrel1" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = 0.785398
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel2" type="Marker2D" parent="barrels"]
+[node name="barrel2" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = 1.5708
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel3" type="Marker2D" parent="barrels"]
+[node name="barrel3" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = 2.35619
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel4" type="Marker2D" parent="barrels"]
+[node name="barrel4" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = -3.14159
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel5" type="Marker2D" parent="barrels"]
+[node name="barrel5" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = -2.35619
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel6" type="Marker2D" parent="barrels"]
+[node name="barrel6" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = -1.5708
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
-[node name="barrel7" type="Marker2D" parent="barrels"]
+[node name="barrel7" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = -0.785398
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
+parent = NodePath("../..")
 
 [node name="fsm" type="Node" parent="."]
 script = ExtResource("11")

@@ -119,3 +119,7 @@ func _on_death_gauge_filled() -> void:
 	if Game.run == null: return
 	Engine.time_scale = 0.25
 	Game.ui.Loss()
+
+func _on_hit(_attacker_name):
+	super(_attacker_name)
+	Game.get_run().set_attacker(_attacker_name)

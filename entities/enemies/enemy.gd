@@ -72,8 +72,8 @@ func _on_modifiers_changed():
 	super()
 	set_image()
 
-func _on_hit():
-	super()
+func _on_hit(_attacker_name):
+	super(_attacker_name)
 	
 	var context: ModifierContextObject = ModifierContextObject.new()
 	context.context = context.ctx.ENEMY_HIT

@@ -39,6 +39,7 @@ func hit_being(what):
 	
 	if is_instance_valid(father):
 		what.last_hit_by = father
+		attacker = father.name
 	var direction = (what.global_position - global_position).normalized()
 	var this_radial_knockback = radial_knockback * direction
 	var this_directional_knockback = directional_knockback.rotated(global_rotation)

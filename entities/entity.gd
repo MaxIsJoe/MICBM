@@ -15,7 +15,7 @@ var daze_time: float = 0.0
 signal upgrades_changed
 signal status_effects_changed
 signal modifiers_changed
-signal on_projectile_hit
+signal on_projectile_hit(_attacker_name)
 
 var father = self
 
@@ -143,6 +143,6 @@ func _on_modifiers_changed():
 	context.context = context.ctx.MODIFIERS_CHANGED
 	modifier_list.calculate_modifiers(context)
 
-func _on_hit():
+func _on_hit(_attacker_name):
 	daze_time = daze_duration
 	update_removal_speed()

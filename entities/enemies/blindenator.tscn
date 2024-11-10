@@ -54,30 +54,33 @@ scale = Vector2(0.5, 0.5)
 [node name="barrels" type="Marker2D" parent="flippable"]
 script = ExtResource("8")
 
-[node name="barrel0" type="Marker2D" parent="flippable/barrels"]
+[node name="barrel0" type="Marker2D" parent="flippable/barrels" node_paths=PackedStringArray("parent")]
 position = Vector2(40, -64)
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 200.0
+parent = NodePath("../../..")
 
 [node name="rotator_to_player" type="Node" parent="flippable/barrels/barrel0"]
 script = ExtResource("11")
 offset_degrees = 45.0
 
-[node name="barrel1" type="Marker2D" parent="flippable/barrels"]
+[node name="barrel1" type="Marker2D" parent="flippable/barrels" node_paths=PackedStringArray("parent")]
 position = Vector2(40, -64)
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 200.0
+parent = NodePath("../../..")
 
 [node name="rotator_to_player" type="Node" parent="flippable/barrels/barrel1"]
 script = ExtResource("11")
 
-[node name="barrel2" type="Marker2D" parent="flippable/barrels"]
+[node name="barrel2" type="Marker2D" parent="flippable/barrels" node_paths=PackedStringArray("parent")]
 position = Vector2(40, -64)
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 200.0
+parent = NodePath("../../..")
 
 [node name="rotator_to_player" type="Node" parent="flippable/barrels/barrel2"]
 script = ExtResource("11")
