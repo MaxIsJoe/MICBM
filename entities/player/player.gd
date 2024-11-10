@@ -81,21 +81,20 @@ func set_camera_zoom():
 	%cam.target_zoom = Vector2(this_zoom, this_zoom)
 
 func set_image():
-	var images: Array[Texture2D] = [default_image, armbound_image, legbound_image, bothbound_image]
-
 	var context: ModifierContext = ModifierContext.new()
 	context.context = context.ctx.ACCELERATION
 	var bondage_difficuilty = calculate_speed_modification(context);
 	
-	var legbound: bool = bondage_difficuilty > 0.25
-	var armbound: bool = bondage_difficuilty > 0.5
-	var bothbound: bool = bondage_difficuilty > 0.7
+	var legbound: bool = modifier_list.get_status_effects().any(func(effect: StatusEffect): return effect is StatusEffectLegsTied)
+	var armbound: bool = bondage_difficuilty > 0.25
 
-	var index: int = 0
-	if armbound: index += 1
-	if legbound: index += 1
-	if bothbound: index = images.size() - 1
-	%visual.texture = images[index]
+	if armbound && armbound:
+		%visual.texture = bothbound_image
+		return
+	if armbound:
+		%visual.texture = armbound_image
+	if legbound:
+		%visual.texture = legbound_image
 
 
 func _on_build_timer_timeout() -> void:
