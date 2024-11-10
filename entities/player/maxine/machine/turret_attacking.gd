@@ -16,6 +16,7 @@ func shoot_projectile():
 	var new_projectile = projectiles.pick_random().instantiate()
 	new_projectile.velocity = Vector2(projectile_speed, 0).rotated(randf_range(-360, 360))
 	new_projectile.teams = target_teams
+	new_projectile.penetrations = 2
 	Game.deploy_instance(new_projectile, father.global_position)
 	return new_projectile
 

@@ -19,7 +19,7 @@ var objects: Dictionary = {
 	"upgrade_screen": preload("res://ui/upgrade_screen.tscn"),
 }
 
-var next_player_to_spawn: PackedScene = null
+var next_player: PlayerInfo
 
 const pause_menu_scene: PackedScene = preload("res://ui/pause_menu.tscn")
 

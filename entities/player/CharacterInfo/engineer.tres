@@ -15,5 +15,13 @@ character_desc = "[center]\"Sometimes, there's comfort in knowing you have no co
 + 3 Different machines to build and deploy.
 - Your own machines can target you.
 - Terrible acceleration speed on the mobile wooden horse."
+loss_text = "[center]And so, Maxine's games have reached their conclusion. Stopped by a vast league of many noble heroes, who safely incapacitated the young villain to await a fair trial at a later date.
+
+She would later be found guilty of International Mega-terrorism, and sentenced to six months of community service or a €500 fine.[/center]"
+intro_text = "Your name? Maxine.
+
+Your objective? Build and launch the [wave]Intercontinental Bondage Missile[/wave], so that you can place the entire world in bondage and play your games.
+
+Your problem? A vast gaggle of heroes has come to stop you."
 character_icon = ExtResource("1_4gdx8")
 character_scene = ExtResource("2_5voq3")

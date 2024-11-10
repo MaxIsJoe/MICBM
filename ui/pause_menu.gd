@@ -14,7 +14,6 @@ func _on_continue_pressed() -> void:
 	Game.update_pause_status()
 
 func _on_egress_pressed() -> void:
-	Game.end_run()
 	remove_from_group("pausers")
 	Game.update_pause_status()
 	get_tree().change_scene_to_packed(main_menu_scene)

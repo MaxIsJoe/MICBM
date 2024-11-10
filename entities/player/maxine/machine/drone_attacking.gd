@@ -16,6 +16,7 @@ func _on_shooting_timer_timeout():
 	var direction: Vector2 = shooting_ray.global_transform.y.normalized()
 	new_projectile.velocity = direction * projectile_speed
 	new_projectile.teams = target_teams
+	new_projectile.penetrations = 2
 	Game.deploy_instance(new_projectile, father.global_position)
 	if charge_progress.value <= 0:
 		father.queue_free()

@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 func on_selected_new_character(playerinfo: PlayerInfo):
 	selected_character = playerinfo
-	Game.next_player_to_spawn = playerinfo.character_scene
+	Game.next_player = playerinfo
 	character_name.text = selected_character.character_name
 	character_desc.text = selected_character.character_desc
 	character_icon.texture = selected_character.character_icon

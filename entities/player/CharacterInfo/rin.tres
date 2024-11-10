@@ -13,5 +13,13 @@ The sky mistress.
 
 + Wider explosion radius.
 - Unable to move while attacking."
+loss_text = "[center]And so, The sky no longer claims new victims to be bound, as the dire machinations of Rin, the Sky Mistress, were put to an end. Stopped by a vast league of many noble heroes, who safely incapacitated the young villain to await a fair trial at a later date.
+
+She would later be found guilty of International Mega-terrorism, and sentenced to three blue moons in Mirska's dungeons.[/center]"
+intro_text = "Your name? Rin.
+
+Your objective? Build and launch the [wave]Intercontinental Bondage Missile[/wave], so that you can place the entire world in bondage to your will.
+
+Your problem? A vast gaggle of heroes has come to stop you."
 character_icon = ExtResource("1_bqp2a")
 character_scene = ExtResource("2_lve3h")

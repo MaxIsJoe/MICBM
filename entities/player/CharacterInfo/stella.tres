@@ -13,5 +13,13 @@ The Rouge Captain.
 
 + Hurl projectiles quickly where you're going.
 - Long Reload Time."
+loss_text = "[center]And so, Stella, the Rouge Captain, has met the consequences of her treason. Stopped by a vast league of many noble heroes, who safely incapacitated the young villain to await a fair trial at a later date.
+
+She would later be found guilty of International Mega-terrorism, treason, and jay-walking, and sentenced to eighty months of community service or a €5 fine.[/center]"
+intro_text = "Your name? Stella.
+
+Your objective? Build and launch the [wave]Intercontinental Bondage Missile[/wave].
+
+Your problem? Your comrades have come to stop you after they learned about the betrayal you're commiting."
 character_icon = ExtResource("1_mcab1")
 character_scene = ExtResource("2_yil0k")

@@ -7,8 +7,16 @@
 [resource]
 script = ExtResource("1_7815s")
 character_name = "Kim"
-character_desc = "[center]The original playable character.[/center]
+character_desc = "[center]The carelessr.[/center]
 
-The vanilla expierence. No modifications."
+The original character. Vanilla expierence. No modifications."
+loss_text = "[center]And so it was that the dire machinations of Kim the Careless were put to an end. Stopped by a vast league of many noble heroes, who safely incapacitated the young villain to await a fair trial at a later date.
+
+She would later be found guilty of International Mega-terrorism, and sentenced to six months of community service or a €500 fine.[/center]"
+intro_text = "Your name? Kim.
+
+Your objective? Build and launch the [wave]Intercontinental Bondage Missile[/wave], so that you can place the entire world in bondage to your will.
+
+Your problem? A vast gaggle of heroes has come to stop you."
 character_icon = ExtResource("1_jm2u7")
 character_scene = ExtResource("2_7qbro")

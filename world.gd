@@ -8,6 +8,6 @@ func _ready() -> void:
 	Game.world = self
 	if music:
 		Music.play_song("Ingame")
-	var player = Game.next_player_to_spawn.instantiate()
+	var player = Game.next_player.character_scene.instantiate()
 	add_child(player)
 	player.global_position = player_spawn.global_position
