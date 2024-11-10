@@ -513,24 +513,23 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[center]
-ICBM is a game originally developed by Daent.
-Maxine's ICBM is a modified version that adds new content and improvements to the game.
+\"Inter-continental bondage missile\" is a game originally developed by Daent.
+\"Maxine's ICBM\" is a modified version Daent's game, that adds new content and improvements to the game.
 
 [b]Q: Why make this?[/b]
-Because I'm bored.
-
-[b]Q: How did you mod/decompile this game?[/b]
-A witch doesn't share her arcane ways :)
-also google is a thing
+Because I was bored, and wanted to create something instead of just working on Unitystation 24/7.
 
 [b]Q: What improvements were made?[/b]
-- Centered the UI because I hate looking up.
-- Changed some mechanics to make the game slightly more engaging.
-- Added some general polish and feedback to some stuff.
+- Various different UI changes and tweaks.
+- Added new characters to play as.
+- New Items.
+- Added the ability to play your own music.
+- Gamepad and Viberation support.
 
 [b]Q: Do you make money off this?[/b]
-I do not. But if you'd like to support my work, you can check out this page:
+I do not. But if you'd like to support my hobby projects (like this one), you can check out this page:
 [u]https://www.maxisjoe.xyz/maxfund[/u]
+
 "
 
 [node name="play_page" parent="Pages" instance=ExtResource("18_smre0")]
