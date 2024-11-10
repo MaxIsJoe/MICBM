@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://cn2cvp7cfydrb"]
 
 [ext_resource type="Script" path="res://ui/components/bomb_display.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bqc7q80sbdk5s" path="res://ui/components/bomb.png" id="2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkonb"]
+font_size = 64
+shadow_size = 2
 
 [node name="bomb_display" type="Control"]
 custom_minimum_size = Vector2(128, 128)
@@ -15,3 +19,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
 texture = ExtResource("2")
+
+[node name="bomb_holder" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="number_bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.242864, 0.130028, 0.199127, 0.556863)
+
+[node name="ammo_count" type="Label" parent="number_bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_vkonb")
+horizontal_alignment = 1
+vertical_alignment = 1
