@@ -15,7 +15,7 @@ var original_pages_holder_pos: Vector2
 
 func _ready() -> void:
 	original_pages_holder_pos = pages_holder.position
-	pages_holder.position = Vector2(pages_holder.position.x + 500, pages_holder.position.y)
+	pages_holder.position = Vector2(pages_holder.position.x + 1000, pages_holder.position.y)
 
 func _process(_delta: float) -> void:
 	%imagery.position = size * imagery_position
@@ -79,7 +79,7 @@ func _on_settings_button_down() -> void:
 func _on_about_button_down() -> void:
 	show_page_section(page_about)
 		
-func tween_alpha_to_show(tween : Tween, child : Control):
+func tween_alpha_to_show(tween: Tween, child: Control):
 	var original = child.self_modulate
 	child.self_modulate = Color(0, 0, 0, 0)
 	tween.tween_property(child, "self_modulate", original, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
