@@ -18,7 +18,7 @@ func _init():
 func _process(delta: float) -> void:
 	super(delta)
 	
-	pitch = lerp(pitch, 1.0, sfx_pitch_reset_speed*delta)
+	pitch = lerp(pitch, 1.0, sfx_pitch_reset_speed * delta)
 	
 	if is_instance_valid(target):
 		var dir: Vector2 = (target.global_position - global_position).normalized()

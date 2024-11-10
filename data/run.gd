@@ -36,12 +36,13 @@ func set_money(what: float):
 
 func set_progress(what: float):
 	progress = what
-	Events.progress_changed.emit()
-	
-	if progress >= max_progress:
+	if progress > max_progress:
 		Game.get_tree().change_scene_to_packed(win_scene)
 
 func set_attacker(last_attacker: Entity):
+	if last_attacker == Game.player:
+		game_stats[GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED] = game_stats[GAMTESTAT_KEY_TIMES_FRIENDLY_FIRE_HAPPENED] + 1
+		return
 	game_stats[GAMTESTAT_KEY_LAST_ATTACKER] = last_attacker.name
 
 func add_time_restraint_removed():
@@ -49,3 +50,10 @@ func add_time_restraint_removed():
 
 func add_time_player_hurt():
 	game_stats[GAMTESTAT_KEY_TIMES_PLAYER_HURT] = game_stats[GAMTESTAT_KEY_TIMES_PLAYER_HURT] + 1
+
+func record_explosion_strength(strength: float):
+	if strength > game_stats[GAMTESTAT_KEY_STRONGEST_EXPLOSION_RECORDED]:
+		game_stats[GAMTESTAT_KEY_STRONGEST_EXPLOSION_RECORDED] = strength
+
+func enemy_restrained():
+	game_stats[GAMTESTAT_KEY_ENEMIES_BOUND] = game_stats[GAMTESTAT_KEY_ENEMIES_BOUND] + 1

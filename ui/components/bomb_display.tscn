@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.242864, 0.130028, 0.199127, 0.556863)
+color = Color(0.253467, 0.12286, 0.19424, 0.141176)
 
 [node name="ammo_count" type="Label" parent="number_bg"]
 layout_mode = 1

@@ -33,6 +33,7 @@ func get_overlapping_hurtboxes():
 	return output
 
 func hit_being(what):
+	var attacker = "Unknown"
 	for i in status_effects:
 		what.gain_modifier(i.instantiate())
 	
@@ -43,7 +44,7 @@ func hit_being(what):
 	var this_directional_knockback = directional_knockback.rotated(global_rotation)
 	what.take_knockback(this_radial_knockback + this_directional_knockback)
 	
-	what.on_projectile_hit.emit()
+	what.on_projectile_hit.emit(attacker)
 
 func set_target_teams(what: Array[int]):
 	teams = what

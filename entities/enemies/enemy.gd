@@ -33,13 +33,14 @@ func _ready() -> void:
 func set_image():
 	if get_max_speed() < max_speed * 0.9:
 		%visual.texture = semi_texture
+		Game.get_run().enemy_restrained()
 	else:
 		%visual.texture = default_texture
 
 func be_fully_bound():
 	super()
 	
-	var offset = Vector2(randf() * 16, 0).rotated(randf() * PI*2)
+	var offset = Vector2(randf() * 16, 0).rotated(randf() * PI * 2)
 	
 	var new_coin = Game.get_object("coin").instantiate()
 	new_coin.value = value
@@ -62,6 +63,7 @@ func be_fully_bound():
 	context.father = last_hit_by
 	context.object = self
 	Game.activate_all_modifiers(context)
+	Game.get_run().enemy_restrained()
 	
 	queue_free()
 
