@@ -17,6 +17,15 @@ signal status_effects_changed
 signal modifiers_changed
 signal on_projectile_hit(_attacker_name)
 
+@export_category("Leash")
+var leash_origin: CharacterBody2D = null
+var leash_line: Line2D
+@export var leash_max_distance: float = 200.0
+@export var pull_strength: float = 10.0
+@export var rope_wave_frequency: float = 5.0 # Controls the frequency of the rope wave
+@export var rope_wave_amplitude: float = 5.0 # Controls the height of the wave
+@export var rope_segments: int = 20 # Number of segments in the rope
+
 var father = self
 
 func _init() -> void:
@@ -28,6 +37,10 @@ func _ready() -> void:
 	add_child(modifier_list)
 	modifiers_changed.connect(_on_modifiers_changed)
 	on_projectile_hit.connect(_on_hit)
+	leash_line = Line2D.new()
+	leash_line.default_color = Color(1, 1, 1) # White color for the leash line
+	leash_line.width = 3
+	add_child(leash_line)
 
 func _process(delta: float) -> void:
 	frictutate(delta)
@@ -39,6 +52,31 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+	if is_instance_valid(leash_origin):
+		# Calculate the distance to the leash origin
+		var distance = position.distance_to(leash_origin.position)
+		if distance > leash_max_distance:
+			var direction = (leash_origin.position - position).normalized()
+			var pull_force = direction * (distance - leash_max_distance) * pull_strength
+			velocity += pull_force * _delta
+			update_rope_visual(distance)
+		else:
+			leash_line.clear_points()
+	else:
+		leash_line.clear_points()
+			
+func update_rope_visual(distance):
+	# Clear existing points and calculate rope segment spacing
+	leash_line.clear_points()
+	var direction = (leash_origin.position - position).normalized()
+	var scaled_wave_amplitude = min(rope_wave_amplitude, distance / rope_segments)
+	# Generate rope points with a sine wave offset
+	for i in range(rope_segments + 1):
+		var t = float(i) / rope_segments # Normalize segment position between 0 and 1
+		var point_position = position.lerp(leash_origin.position, t)
+		var perpendicular = Vector2(-direction.y, direction.x)
+		var wave_offset = perpendicular * sin(t * rope_wave_frequency * PI * 2) * scaled_wave_amplitude
+		leash_line.add_point(point_position + wave_offset - global_position)
 
 
 func get_modifiers() -> Array[Modifier]:
@@ -124,6 +162,14 @@ func set_removal_speed(what: float):
 	removal_speed = what
 	update_removal_speed()
 
+# Function to set the leash origin
+func leash_to(origin: CharacterBody2D):
+	leash_origin = origin
+
+# Function to release the leash
+func release_leash():
+	leash_origin = null
+	leash_line.clear_points()
 
 func _on_upgrade_slain():
 	var emission: Callable = func():

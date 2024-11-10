@@ -64,6 +64,7 @@ func be_fully_bound():
 	context.object = self
 	Game.activate_all_modifiers(context)
 	Game.get_run().enemy_restrained()
+	release_leash()
 	
 	queue_free()
 

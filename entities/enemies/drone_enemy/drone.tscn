@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdilsjremw05u"]
+
+[ext_resource type="PackedScene" uid="uid://b1wnqw761iybt" path="res://entities/entity_base.tscn" id="1_ee1pm"]
+[ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="2_s5stf"]
+[ext_resource type="Texture2D" uid="uid://m3wbklt0tmva" path="res://entities/player/maxine/machine/drone.png" id="3_myq2q"]
+[ext_resource type="Script" path="res://entities/enemies/drone_enemy/chase_state.gd" id="4_xhvcr"]
+[ext_resource type="Script" path="res://entities/enemies/drone_enemy/ram_state.gd" id="5_ikvtx"]
+[ext_resource type="Script" path="res://entities/enemies/drone_enemy/wander_state.gd" id="6_psqym"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ogxj"]
+radius = 42.0
+
+[node name="drone" instance=ExtResource("1_ee1pm")]
+script = ExtResource("2_s5stf")
+default_texture = ExtResource("3_myq2q")
+semi_texture = ExtResource("3_myq2q")
+bound_texture = ExtResource("3_myq2q")
+
+[node name="visual" parent="flippable" index="0"]
+texture = ExtResource("3_myq2q")
+
+[node name="leashing_area" type="Area2D" parent="." index="3"]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="leashing_area" index="0"]
+position = Vector2(0, -31)
+shape = SubResource("CircleShape2D_8ogxj")
+
+[node name="default" type="Node" parent="fsm" index="0"]
+script = ExtResource("4_xhvcr")
+target_distance = 600.0
+walk_animation = "walk"
+
+[node name="ram" type="Node" parent="fsm" index="1"]
+script = ExtResource("5_ikvtx")
+
+[node name="ram_time" type="Timer" parent="fsm/ram" index="0"]
+wait_time = 5.0
+one_shot = true
+
+[node name="wander" type="Node" parent="fsm" index="2"]
+script = ExtResource("6_psqym")
+
+[node name="wander_timer" type="Timer" parent="fsm/wander" index="0"]
+wait_time = 8.0
+
+[connection signal="body_entered" from="leashing_area" to="fsm/ram" method="_on_leashing_area_body_entered"]
+[connection signal="timeout" from="fsm/ram/ram_time" to="fsm/ram" method="_on_ram_time_timeout"]
+[connection signal="timeout" from="fsm/wander/wander_timer" to="fsm/wander" method="_on_wander_timer_timeout"]
