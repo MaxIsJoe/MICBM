@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdilsjremw05u"]
+[gd_scene load_steps=9 format=3 uid="uid://bdilsjremw05u"]
 
 [ext_resource type="PackedScene" uid="uid://b1wnqw761iybt" path="res://entities/entity_base.tscn" id="1_ee1pm"]
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="2_s5stf"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://entities/enemies/drone_enemy/chase_state.gd" id="4_xhvcr"]
 [ext_resource type="Script" path="res://entities/enemies/drone_enemy/ram_state.gd" id="5_ikvtx"]
 [ext_resource type="Script" path="res://entities/enemies/drone_enemy/wander_state.gd" id="6_psqym"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7gyy"]
+radius = 34.0147
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ogxj"]
 radius = 91.1373
@@ -15,6 +18,10 @@ script = ExtResource("2_s5stf")
 default_texture = ExtResource("3_myq2q")
 semi_texture = ExtResource("3_myq2q")
 bound_texture = ExtResource("3_myq2q")
+
+[node name="shape" parent="." index="0"]
+position = Vector2(1, -29)
+shape = SubResource("CircleShape2D_u7gyy")
 
 [node name="visual" parent="flippable" index="0"]
 texture = ExtResource("3_myq2q")
