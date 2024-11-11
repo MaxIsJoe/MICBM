@@ -11,10 +11,7 @@ extends Control
 
 @onready var background_tile: TextureRect = $"background-tile"
 
-var original_pages_holder_pos: Vector2
-
 func _ready() -> void:
-	original_pages_holder_pos = pages_holder.position
 	pages_holder.position = Vector2(pages_holder.position.x + 1000, pages_holder.position.y)
 
 func _process(_delta: float) -> void:
@@ -51,10 +48,9 @@ func show_page_section(page_to_show: Control):
 	page_play.hide()
 	page_music.hide()
 	page_to_show.show()
-	if pages_holder.position != original_pages_holder_pos:
-		pages_holder.show()
-		var tween = get_tree().create_tween()
-		tween.tween_property(pages_holder, "position", original_pages_holder_pos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	pages_holder.show()
+	var tween = get_tree().create_tween()
+	tween.tween_property(pages_holder, "position", $"pos-pages".position, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
 func _on_play_pressed() -> void:

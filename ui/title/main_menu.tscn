@@ -514,15 +514,16 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center]
 \"Inter-continental bondage missile\" is a game originally developed by Daent.
-\"Maxine's ICBM\" is a modified version Daent's game, that adds new content and improvements to the game.
+\"Maxine's ICBM\" is a modified version Daent's game that adds new content and improvements to the game.
 
 [b]Q: Why make this?[/b]
-Because I was bored, and wanted to create something instead of just working on Unitystation 24/7.
+Because I was bored, and wanted to create something new instead of working on Unitystation only.
 
 [b]Q: What improvements were made?[/b]
 - Various different UI changes and tweaks.
 - Added new characters to play as.
-- New Items.
+- 1 New Item.
+- 1 New Enemy Type.
 - Added the ability to play your own music.
 - Gamepad and Viberation support.
 
@@ -539,6 +540,16 @@ layout_mode = 1
 [node name="MusicModScreen" parent="Pages" instance=ExtResource("20_y41fl")]
 visible = false
 layout_mode = 1
+
+[node name="pos-pages" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 87.0
+offset_right = 127.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
 [connection signal="pressed" from="buttons/play" to="." method="_on_play_pressed"]
 [connection signal="button_down" from="buttons/settings" to="." method="_on_settings_button_down"]
