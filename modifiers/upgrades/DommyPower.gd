@@ -1,6 +1,6 @@
 extends Upgrade
 
-@export var chance: float = 50
+@export var chance: float = 10
 @export var chance_per_stack: float = 5
 
 
