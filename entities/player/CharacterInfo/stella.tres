@@ -11,8 +11,10 @@ character_desc = "[center]\"....\"[/center]
 
 The Rouge Captain.
 
-+ Hurl projectiles quickly where you're going.
-- Long Reload Time."
++ Hurl restraints towards where you're going.
++ Your restraints are more powerful.
+- Long Reload Time.
+- Enemies can dodge your attacks."
 loss_text = "[center]And so, Stella, the Rouge Captain, has met the consequences of her treason. Stopped by a vast league of many noble heroes, who safely incapacitated the young villain to await a fair trial at a later date.
 
 She would later be found guilty of International Mega-terrorism, treason, and jay-walking, and sentenced to eighty months of community service or a €5 fine.[/center]"
