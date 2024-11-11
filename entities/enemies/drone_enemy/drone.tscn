@@ -45,9 +45,6 @@ script = ExtResource("6_psqym")
 [node name="wander_timer" type="Timer" parent="fsm/wander" index="0"]
 wait_time = 8.0
 
-[node name="label" parent="." index="5"]
-visible = true
-
 [connection signal="body_entered" from="leashing_area" to="fsm/ram" method="_on_leashing_area_body_entered"]
 [connection signal="timeout" from="fsm/ram/ram_time" to="fsm/ram" method="_on_ram_time_timeout"]
 [connection signal="timeout" from="fsm/wander/wander_timer" to="fsm/wander" method="_on_wander_timer_timeout"]
