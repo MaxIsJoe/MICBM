@@ -8,6 +8,7 @@ var last_target_position: Vector2
 func _enter():
 	$wander_timer.start()
 	father.acceleration = 2500
+	father.max_speed = 250
 	randomize_wander_location()
 
 

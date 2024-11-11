@@ -14,6 +14,7 @@ func _enter():
 	super()
 	target = Game.player
 	father.acceleration = speed
+	father.max_speed = 600
 	$ram_time.start()
 
 func _step(delta: float):

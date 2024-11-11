@@ -39,6 +39,7 @@ walk_animation = "walk"
 
 [node name="ram" type="Node" parent="fsm" index="1" node_paths=PackedStringArray("default_state", "wander_state")]
 script = ExtResource("5_ikvtx")
+speed = 39000.0
 default_state = NodePath("../default")
 wander_state = NodePath("../wander")
 
