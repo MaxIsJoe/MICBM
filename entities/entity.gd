@@ -52,27 +52,25 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+	leash_physics(_delta)
+		
+func leash_physics(_delta: float):
 	if is_instance_valid(leash_origin):
-		# Calculate the distance to the leash origin
 		var distance = position.distance_to(leash_origin.position)
 		if distance > leash_max_distance:
 			var direction = (leash_origin.position - position).normalized()
 			var pull_force = direction * (distance - leash_max_distance) * pull_strength
 			velocity += pull_force * _delta
-			update_rope_visual(distance)
-		else:
-			leash_line.clear_points()
+		update_rope_visual(distance)
 	else:
 		leash_line.clear_points()
 			
 func update_rope_visual(distance):
-	# Clear existing points and calculate rope segment spacing
 	leash_line.clear_points()
 	var direction = (leash_origin.position - position).normalized()
 	var scaled_wave_amplitude = min(rope_wave_amplitude, distance / rope_segments)
-	# Generate rope points with a sine wave offset
 	for i in range(rope_segments + 1):
-		var t = float(i) / rope_segments # Normalize segment position between 0 and 1
+		var t = float(i) / rope_segments
 		var point_position = position.lerp(leash_origin.position, t)
 		var perpendicular = Vector2(-direction.y, direction.x)
 		var wave_offset = perpendicular * sin(t * rope_wave_frequency * PI * 2) * scaled_wave_amplitude
