@@ -16,7 +16,7 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_cq5t0"]
+[sub_resource type="CurveTexture" id="CurveTexture_m7ndl"]
 curve = SubResource("Curve_n73op")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qasb"]
@@ -24,7 +24,7 @@ particle_flag_disable_z = true
 spread = 110.275
 scale_min = 2.0
 scale_max = 6.0
-alpha_curve = SubResource("CurveTexture_cq5t0")
+alpha_curve = SubResource("CurveTexture_m7ndl")
 turbulence_noise_strength = 0.57
 
 [node name="Engineer" instance=ExtResource("1_clcvx")]
@@ -34,6 +34,7 @@ legbound_image = ExtResource("4_kekh5")
 bothbound_image = ExtResource("5_vvwpl")
 max_speed = 1500.0
 acceleration = 200.0
+leash_max_distance = 250.0
 
 [node name="visual" parent="flippable" index="0"]
 texture = ExtResource("2_o3ppt")
