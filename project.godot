@@ -27,7 +27,6 @@ Viberation="*res://singleta/viberation.gd"
 Music="*res://singleta/Audio/music.tscn"
 OptionsManager="*res://singleta/Options/options.gd"
 LimboConsole="*res://addons/limbo_console/limbo_console.gd"
-ModLoader="res://singleta/Mods/mod_loader.gd"
 
 [display]
 
