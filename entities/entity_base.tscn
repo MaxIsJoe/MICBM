@@ -37,7 +37,7 @@ texture = ExtResource("4_5fr8v")
 [node name="fsm" type="Node" parent="."]
 script = ExtResource("5_ak0jc")
 
-[node name="label" type="Label" parent="."]
+[node name="debug_label" type="Label" parent="."]
 visible = false
 offset_left = -60.0
 offset_top = 28.0
