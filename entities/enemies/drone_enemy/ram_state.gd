@@ -5,6 +5,7 @@ extends State
 
 @export var default_state: State
 @export var wander_state: State
+@onready var smoke: GPUParticles2D = $"../../smoke"
 
 var target: Node2D = null
 var last_target_dir: Vector2
@@ -16,6 +17,7 @@ func _enter():
 	father.acceleration = speed
 	father.max_speed = 600
 	$ram_time.start()
+	smoke.emitting = true
 
 func _step(delta: float):
 	super(delta)
