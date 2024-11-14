@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdilsjremw05u"]
+[gd_scene load_steps=12 format=3 uid="uid://bdilsjremw05u"]
 
 [ext_resource type="PackedScene" uid="uid://b1wnqw761iybt" path="res://entities/entity_base.tscn" id="1_ee1pm"]
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="2_s5stf"]
@@ -12,6 +12,21 @@ radius = 34.0147
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ogxj"]
 radius = 91.1373
+
+[sub_resource type="Curve" id="Curve_q0tnb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cq5t0"]
+curve = SubResource("Curve_q0tnb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u6ofo"]
+particle_flag_disable_z = true
+spread = 110.275
+scale_min = 2.0
+scale_max = 6.0
+alpha_curve = SubResource("CurveTexture_cq5t0")
+turbulence_noise_strength = 0.57
 
 [node name="drone" instance=ExtResource("1_ee1pm")]
 script = ExtResource("2_s5stf")
@@ -51,8 +66,15 @@ one_shot = true
 script = ExtResource("6_psqym")
 
 [node name="wander_timer" type="Timer" parent="fsm/wander" index="0"]
-wait_time = 8.0
+wait_time = 4.0
+
+[node name="smoke" type="GPUParticles2D" parent="." index="6"]
+position = Vector2(-1, -14)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_u6ofo")
 
 [connection signal="body_entered" from="leashing_area" to="fsm/ram" method="_on_leashing_area_body_entered"]
+[connection signal="entered" from="fsm/default" to="fsm/default" method="_on_entered"]
 [connection signal="timeout" from="fsm/ram/ram_time" to="fsm/ram" method="_on_ram_time_timeout"]
+[connection signal="entered" from="fsm/wander" to="fsm/wander" method="_on_entered"]
 [connection signal="timeout" from="fsm/wander/wander_timer" to="fsm/wander" method="_on_wander_timer_timeout"]
