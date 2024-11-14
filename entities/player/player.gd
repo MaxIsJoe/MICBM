@@ -91,9 +91,9 @@ func set_image():
 	if armbound && armbound:
 		%visual.texture = bothbound_image
 		return
-	if armbound:
+	if armbound && legbound == false:
 		%visual.texture = armbound_image
-	if legbound:
+	if legbound && armbound == false:
 		%visual.texture = legbound_image
 
 
