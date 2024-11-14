@@ -9,7 +9,6 @@ extends State
 
 var target: Node2D = null
 
-
 func _step(delta: float):
 	super(delta)
 	
@@ -33,3 +32,7 @@ func _step(delta: float):
 			fsm.play_animation(walk_animation)
 		else:
 			fsm.play_animation(animation)
+
+
+func _on_entered() -> void:
+	father.max_speed = 200
