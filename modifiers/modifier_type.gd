@@ -12,7 +12,7 @@ enum ModifierUse {
 @export var icon: Texture2D = null
 @export var effect: GDScript = null
 @export var modUse: ModifierUse = ModifierUse.Neutral
-
+@export var activation_audio: AudioStream
 
 func instantiate() -> Modifier:
 	var output = effect.new()

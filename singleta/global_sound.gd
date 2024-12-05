@@ -17,7 +17,18 @@ func play_sfx_2d(what: String, where: Vector2) -> SFX2D:
 	var new_sfx: SFX2D = SFX2D.new()
 	var available_streams: Array = sfx[what]
 	new_sfx.stream = available_streams.pick_random()
+	new_sfx.max_distance = 1750
 	Game.deploy_instance(new_sfx, where)
+	return new_sfx
+	
+func play_sfx_stream(stream: AudioStream, autoplay: bool = true) -> AudioStreamPlayer:
+	if (stream == null): return
+	var new_sfx: AudioStreamPlayer = AudioStreamPlayer.new()
+	new_sfx.stream = stream
+	new_sfx.autoplay = autoplay
+	new_sfx.finished.connect(new_sfx.queue_free)
+	new_sfx.bus = "SFX"
+	Game.add_child(new_sfx)
 	return new_sfx
 
 func pitch_shift(shift_to: float, time: float):

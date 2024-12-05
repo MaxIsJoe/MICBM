@@ -1,9 +1,17 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cxvcivujxg7vj"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://cxvcivujxg7vj"]
 
 [ext_resource type="Script" path="res://modifiers/status_effects/status_effect_type.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://unxdbv6k0av7" path="res://fx/audio/bondage/208750__everheat__zipper.wav" id="1_2twps"]
 [ext_resource type="Texture2D" uid="uid://chh7x4i0r0ifk" path="res://modifiers/status_effects/item_sprites/blind.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://yy2mpqqis1gg" path="res://fx/audio/bondage/208749__everheat__zipper2.wav" id="2_83vmk"]
 [ext_resource type="Texture2D" uid="uid://b6mk6gw2qd4kg" path="res://modifiers/status_effects/blind.png" id="3"]
 [ext_resource type="Script" path="res://modifiers/status_effects/blind.gd" id="4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q0gwg"]
+playback_mode = 2
+streams_count = 2
+stream_0/stream = ExtResource("1_2twps")
+stream_1/stream = ExtResource("2_83vmk")
 
 [resource]
 script = ExtResource("1")
@@ -13,3 +21,4 @@ description = "Look at how much you can't see! Gaze upon it with your own two ey
 icon = ExtResource("3")
 effect = ExtResource("4")
 modUse = 1
+activation_audio = SubResource("AudioStreamRandomizer_q0gwg")

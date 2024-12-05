@@ -27,10 +27,12 @@ func _process(delta: float) -> void:
 
 func get_collected():
 	Game.get_run().money += value
-	var sfx: SFX2D = GlobalSound.play_sfx_2d("coin", global_position)
+	var sound = GlobalSound.sfx.get("coin").pick_random()
+	var sfx: AudioStreamPlayer = GlobalSound.play_sfx_stream(sound, false)
 	sfx.pitch_scale = pitch
 	for i in get_tree().get_nodes_in_group("coins"):
 		i.pitch += sfx_pitch_increment
+	sfx.play()
 	queue_free()
 
 

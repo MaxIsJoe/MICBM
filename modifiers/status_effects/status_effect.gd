@@ -1,10 +1,9 @@
 class_name StatusEffect
 extends Modifier
 
-
 @export var max_duration: float = 5.0
 @export var duration: float = 5.0
-
+@export var on_activiate_sound: AudioStream
 var removal_speed: float = 1.0
 
 

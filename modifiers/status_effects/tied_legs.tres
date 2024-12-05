@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://djksonkjb4iu5"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://djksonkjb4iu5"]
 
 [ext_resource type="Script" path="res://modifiers/status_effects/status_effect_type.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://cjrngl3ylr0vk" path="res://fx/audio/bondage/205520__everheat__backpack1.wav" id="1_x8mpl"]
 [ext_resource type="Texture2D" uid="uid://t8afhqwv7a8k" path="res://modifiers/status_effects/item_sprites/legs_tied.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://7ttiddcpi383" path="res://modifiers/status_effects/legs_tied.png" id="3"]
 [ext_resource type="Script" path="res://modifiers/status_effects/tied_legs.gd" id="4"]
@@ -13,3 +14,4 @@ description = "Your legs are tied such that you cannot move as fast!"
 icon = ExtResource("3")
 effect = ExtResource("4")
 modUse = 1
+activation_audio = ExtResource("1_x8mpl")
