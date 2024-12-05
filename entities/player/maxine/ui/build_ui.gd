@@ -115,6 +115,7 @@ func input_for_build_item(build_item, input: String):
 
 func input_done():
 	input_happened.emit(current_inputs)
+	$input.play()
 
 func _on_player_input_received(input: String):
 	for build_item in current_inputs.keys():

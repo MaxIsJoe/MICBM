@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbpb3g4nf4pd3"]
+[gd_scene load_steps=6 format=3 uid="uid://dbpb3g4nf4pd3"]
 
 [ext_resource type="Script" path="res://entities/player/maxine/ui/build_ui.gd" id="1_1xpv3"]
 [ext_resource type="PackedScene" uid="uid://dktjenn7e5ul3" path="res://entities/player/maxine/ui/build_item.tscn" id="1_87age"]
 [ext_resource type="PackedScene" uid="uid://cb0b5y3o8tuuq" path="res://entities/player/maxine/machine/mine.tscn" id="2_wlrdj"]
 [ext_resource type="PackedScene" uid="uid://bk8ys6lf56c47" path="res://entities/player/maxine/machine/turret.tscn" id="3_34mvr"]
+[ext_resource type="AudioStream" uid="uid://b8x3xsr3fm2la" path="res://audio/ui/470253__erokia__menu-ui-click-127.wav" id="6_xnkfl"]
 
 [node name="BuildUI" type="Control"]
 layout_mode = 3
@@ -25,3 +26,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="input" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xnkfl")

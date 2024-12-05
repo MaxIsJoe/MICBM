@@ -1,6 +1,5 @@
 extends Control
 
-
 @export var flash_duration: float = 1
 @export var imagery_position: Vector2 = Vector2(.5, .5)
 @export var pages_holder: Control = null
@@ -9,14 +8,30 @@ extends Control
 @export var page_play: Control = null
 @export var page_music: Control = null
 
+@export var sound_click: AudioStream
+@export var sound_hover: AudioStream
+
 @onready var background_tile: TextureRect = $"background-tile"
+
 
 func _ready() -> void:
 	pages_holder.position = Vector2(pages_holder.position.x + 1000, pages_holder.position.y)
+	connect("child_entered_tree", _check_for_button_nodes)
+	_check_for_button_nodes(self)
 
 func _process(_delta: float) -> void:
 	%imagery.position = size * imagery_position
 
+func _check_for_button_nodes(node: Node):
+	if (node is Button):
+		node.connect("pressed", func(): GlobalSound.play_sfx_stream(sound_click))
+		node.connect("focus_entered", func(): GlobalSound.play_sfx_stream(sound_hover))
+	for i in node.get_children(true):
+		if (i is Button):
+			print(i)
+			i.connect("pressed", func(): GlobalSound.play_sfx_stream(sound_click))
+			i.connect("focus_entered", func(): GlobalSound.play_sfx_stream(sound_hover))
+		_check_for_button_nodes(i)
 
 func arrive():
 	flash()

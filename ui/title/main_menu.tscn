@@ -1,8 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://r6g5p3cgklbk"]
+[gd_scene load_steps=29 format=3 uid="uid://r6g5p3cgklbk"]
 
 [ext_resource type="Theme" uid="uid://c7uq5fs7s6fxu" path="res://ui/style/theme_main.tres" id="1"]
 [ext_resource type="Script" path="res://ui/title/main_menu.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://ceju44dtsl8po" path="res://audio/ui/542042__rob_marion__gasp_ui_alert_2.wav" id="3_lwk57"]
 [ext_resource type="Shader" path="res://shaders/pan.gdshader" id="4_iucsf"]
+[ext_resource type="AudioStream" uid="uid://b8x3xsr3fm2la" path="res://audio/ui/470253__erokia__menu-ui-click-127.wav" id="4_kg4cf"]
 [ext_resource type="Texture2D" uid="uid://o3pyywoscv8a" path="res://ui/title/missile.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://brp2bgi5sregk" path="res://ui/title/icbm-tile.png" id="5_xg7eh"]
 [ext_resource type="Texture2D" uid="uid://depwj6sy4uvyh" path="res://fx/spark.png" id="6"]
@@ -285,6 +287,8 @@ page_options = NodePath("Pages/options")
 page_about = NodePath("Pages/about")
 page_play = NodePath("Pages/play_page")
 page_music = NodePath("Pages/MusicModScreen")
+sound_click = ExtResource("3_lwk57")
+sound_hover = ExtResource("4_kg4cf")
 
 [node name="background-tile" type="TextureRect" parent="."]
 visible = false

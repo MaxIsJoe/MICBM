@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnyry4no2j4bm"]
+[gd_scene load_steps=16 format=3 uid="uid://dnyry4no2j4bm"]
 
 [ext_resource type="PackedScene" uid="uid://0ft28uu0mlme" path="res://entities/player/player.tscn" id="1_clcvx"]
 [ext_resource type="Texture2D" uid="uid://3hn5cyk2ob8r" path="res://entities/player/maxine/engineer-default.png" id="2_o3ppt"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ynvlcdn1cvqh" path="res://entities/player/maxine/engineer-bothbound.png" id="5_vvwpl"]
 [ext_resource type="Script" path="res://entities/player/maxine/states/engineer_normal.gd" id="6_cog3f"]
 [ext_resource type="Script" path="res://entities/player/maxine/states/engineer_building.gd" id="7_nueui"]
+[ext_resource type="AudioStream" uid="uid://c7m0wundmhtji" path="res://audio/ui/277033__headphaze__ui-completed-status-alert-notification-sfx001.wav" id="8_l0pfy"]
 [ext_resource type="PackedScene" uid="uid://dbpb3g4nf4pd3" path="res://entities/player/maxine/ui/build_ui.tscn" id="8_pysi2"]
 [ext_resource type="PackedScene" uid="uid://cb0b5y3o8tuuq" path="res://entities/player/maxine/machine/mine.tscn" id="9_m4dnr"]
 [ext_resource type="PackedScene" uid="uid://bk8ys6lf56c47" path="res://entities/player/maxine/machine/turret.tscn" id="10_bqj30"]
@@ -44,6 +45,9 @@ script = ExtResource("6_cog3f")
 
 [node name="building" type="Node" parent="fsm" index="1"]
 script = ExtResource("7_nueui")
+
+[node name="build_done" type="AudioStreamPlayer" parent="fsm/building" index="0"]
+stream = ExtResource("8_l0pfy")
 
 [node name="reload_timer" parent="." index="8"]
 wait_time = 0.7

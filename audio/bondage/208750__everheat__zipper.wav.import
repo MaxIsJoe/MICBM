@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://unxdbv6k0av7"
-path="res://.godot/imported/208750__everheat__zipper.wav-cccab93854c7ac3d8571ef576f1dbf20.sample"
+path="res://.godot/imported/208750__everheat__zipper.wav-ecea2ae4460e5666ced7e6cb57732c2a.sample"
 
 [deps]
 
-source_file="res://fx/audio/bondage/208750__everheat__zipper.wav"
-dest_files=["res://.godot/imported/208750__everheat__zipper.wav-cccab93854c7ac3d8571ef576f1dbf20.sample"]
+source_file="res://audio/bondage/208750__everheat__zipper.wav"
+dest_files=["res://.godot/imported/208750__everheat__zipper.wav-ecea2ae4460e5666ced7e6cb57732c2a.sample"]
 
 [params]
 
