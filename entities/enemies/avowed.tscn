@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2ovot564qxe"]
+[gd_scene load_steps=17 format=3 uid="uid://c2ovot564qxe"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cebbhjetu5cbm" path="res://entities/enemies/avowed.png" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://fsm/fsm.gd" id="11"]
 [ext_resource type="Script" path="res://fsm/states/hold_distance.gd" id="12"]
 [ext_resource type="Script" path="res://fsm/states/charge.gd" id="13"]
+[ext_resource type="AudioStream" uid="uid://cs221ypbqso84" path="res://audio/enemies/645485__audiopapkin__sci-fi-transition.wav" id="14_ynsmg"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 24.0
@@ -54,11 +55,12 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(0, -80)
 script = ExtResource("8")
 
-[node name="barrel0" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
+[node name="barrel0" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent", "attackSound")]
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 141.0
 parent = NodePath("../..")
+attackSound = NodePath("../../soundattack")
 
 [node name="barrel1" type="Marker2D" parent="barrels" node_paths=PackedStringArray("parent")]
 rotation = 0.785398
@@ -126,6 +128,9 @@ next_state = "hold_distance"
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 17.0
 autostart = true
+
+[node name="soundattack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_ynsmg")
 
 [connection signal="activated" from="fsm/shoot" to="barrels" method="activate"]
 [connection signal="timeout" from="shoot_timer" to="fsm/hold_distance" method="set_state" binds= ["shoot"]]

@@ -20,7 +20,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	super()
-	
 	set_image()
 	
 	if uber:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbyfqbif6ev6a"]
+[gd_scene load_steps=18 format=3 uid="uid://bbyfqbif6ev6a"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cg65foo1g1i4a" path="res://entities/enemies/blindenator.png" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://fsm/fsm.gd" id="12"]
 [ext_resource type="Script" path="res://fsm/states/hold_distance.gd" id="13"]
 [ext_resource type="Script" path="res://fsm/states/charge.gd" id="14"]
+[ext_resource type="AudioStream" uid="uid://dd6hytqbk1aud" path="res://audio/enemies/219014__cusconauta__hitting-magic.wav" id="15_rmf5p"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 24.0
@@ -54,12 +55,13 @@ scale = Vector2(0.5, 0.5)
 [node name="barrels" type="Marker2D" parent="flippable"]
 script = ExtResource("8")
 
-[node name="barrel0" type="Marker2D" parent="flippable/barrels" node_paths=PackedStringArray("parent")]
+[node name="barrel0" type="Marker2D" parent="flippable/barrels" node_paths=PackedStringArray("parent", "attackSound")]
 position = Vector2(40, -64)
 script = ExtResource("9")
 projectile_scene = ExtResource("10")
 projectile_speed = 200.0
 parent = NodePath("../../..")
+attackSound = NodePath("../../../attacksound")
 
 [node name="rotator_to_player" type="Node" parent="flippable/barrels/barrel0"]
 script = ExtResource("11")
@@ -103,6 +105,9 @@ next_state = "hold_distance"
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 13.0
 autostart = true
+
+[node name="attacksound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_rmf5p")
 
 [connection signal="activated" from="fsm/shoot" to="flippable/barrels" method="activate"]
 [connection signal="timeout" from="shoot_timer" to="fsm/hold_distance" method="set_state" binds= ["shoot"]]

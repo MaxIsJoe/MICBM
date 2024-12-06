@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=90
 config/icon="res://ui/components/bomb.png"
 
+[audio]
+
+buses/default_bus_layout="res://audio/audio_bus.tres"
+
 [autoload]
 
 Game="*res://singleta/game.gd"

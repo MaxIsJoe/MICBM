@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ywipx473ukii"]
+[gd_scene load_steps=19 format=3 uid="uid://ywipx473ukii"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bwop6wlt1bdgx" path="res://entities/enemies/shibarist.png" id="2"]
@@ -13,12 +13,20 @@
 [ext_resource type="Script" path="res://fsm/fsm.gd" id="11"]
 [ext_resource type="Script" path="res://fsm/states/hold_distance.gd" id="12"]
 [ext_resource type="Script" path="res://fsm/states/charge.gd" id="13"]
+[ext_resource type="AudioStream" uid="uid://cs124w3l70ov1" path="res://audio/enemies/420677__sypherzent__spell-cast-buff-deep-tone.wav" id="14_161yq"]
+[ext_resource type="AudioStream" uid="uid://bylvcyieghawn" path="res://audio/enemies/420676__sypherzent__spell-cast-buff-high-tone.wav" id="15_xtli5"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 24.0
 
 [sub_resource type="CircleShape2D" id="2"]
 radius = 64.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_04dll"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("14_161yq")
+stream_1/stream = ExtResource("15_xtli5")
 
 [node name="basic_enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -51,11 +59,12 @@ position = Vector2(0, -32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2")
 
-[node name="barrel" type="Marker2D" parent="flippable" node_paths=PackedStringArray("parent")]
+[node name="barrel" type="Marker2D" parent="flippable" node_paths=PackedStringArray("parent", "attackSound")]
 position = Vector2(40, -64)
 script = ExtResource("8")
 projectile_scene = ExtResource("9")
 parent = NodePath("../..")
+attackSound = NodePath("../../AttackSound")
 
 [node name="rotator_to_player" type="Node" parent="flippable/barrel"]
 script = ExtResource("10")
@@ -77,6 +86,10 @@ next_state = "hold_distance"
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 9.0
 autostart = true
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_04dll")
+bus = &"SFX"
 
 [connection signal="activated" from="fsm/shoot" to="flippable/barrel" method="activate"]
 [connection signal="timeout" from="shoot_timer" to="fsm/hold_distance" method="set_state" binds= ["shoot"]]

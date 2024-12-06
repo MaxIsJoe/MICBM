@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdilsjremw05u"]
+[gd_scene load_steps=14 format=3 uid="uid://bdilsjremw05u"]
 
 [ext_resource type="PackedScene" uid="uid://b1wnqw761iybt" path="res://entities/entity_base.tscn" id="1_ee1pm"]
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="2_s5stf"]
 [ext_resource type="Texture2D" uid="uid://m3wbklt0tmva" path="res://entities/player/maxine/machine/drone.png" id="3_myq2q"]
 [ext_resource type="Script" path="res://entities/enemies/drone_enemy/chase_state.gd" id="4_xhvcr"]
 [ext_resource type="Script" path="res://entities/enemies/drone_enemy/ram_state.gd" id="5_ikvtx"]
+[ext_resource type="AudioStream" uid="uid://bbtwyiikr6sy4" path="res://audio/machine/529626__beetlemuse__alert-1.wav" id="6_cochw"]
 [ext_resource type="Script" path="res://entities/enemies/drone_enemy/wander_state.gd" id="6_psqym"]
+[ext_resource type="AudioStream" uid="uid://bbsc55cjjvvtj" path="res://audio/enemies/339700__ffkoenigsegg20012017__car-about-to-pass-by-aggressive.wav" id="7_4yjqd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u7gyy"]
 radius = 34.0147
@@ -52,11 +54,13 @@ script = ExtResource("4_xhvcr")
 target_distance = 600.0
 walk_animation = "walk"
 
-[node name="ram" type="Node" parent="fsm" index="1" node_paths=PackedStringArray("default_state", "wander_state")]
+[node name="ram" type="Node" parent="fsm" index="1" node_paths=PackedStringArray("default_state", "wander_state", "sound_enter_state", "sound_ramming")]
 script = ExtResource("5_ikvtx")
 speed = 39000.0
 default_state = NodePath("../default")
 wander_state = NodePath("../wander")
+sound_enter_state = NodePath("../../sounds/enter_state")
+sound_ramming = NodePath("../../sounds/ramming")
 
 [node name="ram_time" type="Timer" parent="fsm/ram" index="0"]
 wait_time = 5.0
@@ -72,6 +76,18 @@ wait_time = 4.0
 position = Vector2(-1, -14)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_u6ofo")
+
+[node name="sounds" type="Node2D" parent="." index="7"]
+
+[node name="enter_state" type="AudioStreamPlayer2D" parent="sounds" index="0"]
+stream = ExtResource("6_cochw")
+attenuation = 2.07053
+bus = &"SFX"
+
+[node name="ramming" type="AudioStreamPlayer2D" parent="sounds" index="1"]
+stream = ExtResource("7_4yjqd")
+attenuation = 3.4822
+bus = &"SFX"
 
 [connection signal="body_entered" from="leashing_area" to="fsm/ram" method="_on_leashing_area_body_entered"]
 [connection signal="entered" from="fsm/default" to="fsm/default" method="_on_entered"]
