@@ -28,13 +28,15 @@ jobs:
           relative_project_path: ./
           archive_output: true
 
-      - name: Magic Version
-        uses: sinkcup/magic-version@v1.2.0
-        env:
-          TAG_PREFIX: v # optional
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+      - name: Generate Version
+        id: versioning
+        uses: sceccotti89/Github-Action-Versioning@v1.0.5
+      - name: Get the output version
+        run: echo "Version = ${{ steps.versioning.outputs.version }}"
+      - name: create release
+        uses: ncipollo/release-action@v1.14.0
         with:
-          name: v-${{ env.MAGIC_VERSION }}
-          path: ${{ steps.export.outputs.archive_directory }}/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: ${{ steps.versioning.outputs.version }}
+          artifacts: ${{ steps.export.outputs.archive_directory }}/*
