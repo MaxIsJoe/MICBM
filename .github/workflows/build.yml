@@ -34,7 +34,7 @@ jobs:
           TAG_PREFIX: v # optional
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: demo-${{ env.MAGIC_VERSION }}
           path: dist
