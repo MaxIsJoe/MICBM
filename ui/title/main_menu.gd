@@ -18,6 +18,8 @@ func _ready() -> void:
 	pages_holder.position = Vector2(pages_holder.position.x + 1000, pages_holder.position.y)
 	connect("child_entered_tree", _check_for_button_nodes)
 	_check_for_button_nodes(self)
+	if OS.get_distribution_name() == "":
+		$buttons/custom_music.hide()
 
 func _process(_delta: float) -> void:
 	%imagery.position = size * imagery_position
