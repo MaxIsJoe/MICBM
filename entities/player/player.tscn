@@ -87,5 +87,7 @@ one_shot = true
 [node name="build_timer" type="Timer" parent="."]
 autostart = true
 
+[node name="sounds" type="Node2D" parent="."]
+
 [connection signal="filled" from="gauge_holder/death_gauge" to="." method="_on_death_gauge_filled"]
 [connection signal="timeout" from="build_timer" to="." method="_on_build_timer_timeout"]

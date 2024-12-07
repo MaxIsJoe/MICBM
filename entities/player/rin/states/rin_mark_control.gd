@@ -7,6 +7,10 @@ extends State
 @export var target_teams: Array[int] = [1]
 var explosion_radius: float = 121
 
+var phrases: Array[String] = ["Ready for deployment", 
+"Sky's blazing.", "Payload ready.", "Locked and Loaded.", "They wont know what tied em.",
+"Ready for action.", "They wont know what gagged them.", "Ready", "Who wants some?"]
+
 func _step(delta: float):
 	super(delta)
 	tractutate(delta)
@@ -34,6 +38,8 @@ func deploy_bomb():
 func _enter():
 	super()
 	marker.show()
+	var voice: Dictionary = DisplayServer.tts_get_voices().pick_random()
+	DisplayServer.tts_speak(phrases.pick_random(), voice["id"], 35, 1, 1, 0, true)
 	
 func _exit():
 	super()

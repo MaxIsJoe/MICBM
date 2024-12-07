@@ -5,6 +5,8 @@ extends State
 @export var max_bombs: int = 1
 var bombs: int = max_bombs
 
+var move_amount = 1
+
 func _step(delta: float):
 	super(delta)
 	tractutate(delta)
@@ -38,8 +40,9 @@ func update_ammo():
 func tractutate(delta):
 	var traction: Vector2 = Vector2()
 	var mods: Array[Modifier] = father.get_modifiers()
+	var to_move = move_amount
 	for mod : Modifier in mods:
-		if (mod.type.ModifierUse.Restrain): delta -= clamp(delta, 0.5, delta / 2)
+		if (mod.type.ModifierUse.Restrain): to_move = clamp(to_move, 0.5, to_move - 0.1)
 	
 	if Input.is_action_pressed("move_up"):    traction.y -= 1
 	if Input.is_action_pressed("move_down"):  traction.y += 1
@@ -47,4 +50,4 @@ func tractutate(delta):
 	if Input.is_action_pressed("move_right"): traction.x += 1
 	
 	traction = traction.normalized()
-	father.accelerate(traction, delta)
+	father.accelerate(traction * to_move, delta)
