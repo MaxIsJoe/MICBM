@@ -28,5 +28,13 @@ jobs:
           relative_project_path: ./
           archive_output: true
 
-      - name: Version generator
-        uses: lpenz/ghaction-version-gen@v0.14.0
+      - name: Magic Version
+        uses: sinkcup/magic-version@v1
+        env:
+          TAG_PREFIX: v # optional
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: demo-${{ env.MAGIC_VERSION }}
+          path: dist
