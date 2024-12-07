@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://lcg4laayqpq4" path="res://ui/components/beard.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://tl8cemononhn" path="res://ui/components/tiling.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://chwvvh1t8y6s5" path="res://ui/components/orb.png" id="3"]
-[ext_resource type="PackedScene" path="res://ui/components/bomb_display.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cn2cvp7cfydrb" path="res://ui/components/bomb_display.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://dd4o4d33jx570" path="res://ui/components/orb_over.png" id="5"]
 [ext_resource type="PackedScene" path="res://ui/components/money_display.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://ui/components/main_progress_bar.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cnr18cmdh2pmw" path="res://ui/components/main_progress_bar.tscn" id="7"]
 
 [node name="upperbar" type="Control"]
 custom_minimum_size = Vector2(0, 128)
@@ -97,7 +97,7 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 128.0
+offset_left = 129.0
 offset_top = -48.0
 offset_right = -128.0
 offset_bottom = -16.0
