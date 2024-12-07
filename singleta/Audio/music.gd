@@ -51,7 +51,10 @@ func load_song_packs():
 	var config_file := ConfigFile.new()
 	var error := config_file.load("user://song_packs.ini")
 	if error:
-		print("An error happened while loading data: ", error)
+		printerr("An error happened while loading data: " + str(error))
+		add_default_pack()
+		save_song_packs()
+		set_current_pack("Original OST")
 		return
 	for loadedPack in config_file.get_sections():
 		var pack: SongPackData = SongPackData.new()
