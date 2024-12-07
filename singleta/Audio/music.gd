@@ -15,6 +15,10 @@ func _ready():
 	AudioServer.set_bus_layout(bus_layout)
 	audio_stream_player.bus = "Music"
 	on_pack_changed.connect(_on_song_pack_changed)
+	if OS.get_distribution_name() == "":
+		add_default_pack()
+		set_current_pack("Original OST")
+		return
 	load_song_packs()
 	_register_commands()
 	
@@ -107,6 +111,11 @@ func play_song(song_name: String):
 		for song in current_pack.Songs:
 			if song == song_name:
 				current_song_id_to_play = song
+				if OS.get_distribution_name() == "":
+					var browserWorkaround = load(current_pack.Songs[song])
+					audio_stream_player.stream = browserWorkaround
+					audio_stream_player.play()
+					return
 				_play_song_path(current_pack.Songs[song])
 				return
 	print("Song not found in the current pack.")
