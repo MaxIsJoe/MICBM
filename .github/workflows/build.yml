@@ -29,7 +29,7 @@ jobs:
           archive_output: true
 
       - name: Magic Version
-        uses: sinkcup/magic-version@v1
+        uses: sinkcup/magic-version@v1.2.0
         env:
           TAG_PREFIX: v # optional
 
