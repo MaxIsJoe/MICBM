@@ -515,25 +515,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "[center]
 \"Inter-continental bondage missile\" is a game originally developed by Daent.
-\"Maxine's ICBM\" is a modified version Daent's game that adds new content and improvements to the game.
+\"Maxine's Modded ICBM\" is a modified version Daent's game that adds new content and improvements to the game.
+[/center]
 
-[b]Q: Why make this?[/b]
+[b][u]Q: Why make this?[/u][/b]
 Because I was bored, and wanted to create something new instead of working on Unitystation only.
 
-[b]Q: What improvements were made?[/b]
+[b][u]Q: What improvements were made?[/u][/b]
 - Various different UI changes and tweaks.
-- Added new characters to play as.
-- 1 New Item.
+- Added 3 new characters to play as, with their own unique gameplay styles and challenges.
+- 1 New Modifier.
 - 1 New Enemy Type.
 - Added the ability to play your own music.
+- Sound effects for most actions to improve gameplay feedback.
 - Gamepad and Viberation support.
 
-[b]Q: Do you make money off this?[/b]
+[b][u]Q: Do you make money off this?[/u][/b]
 I do not. But if you'd like to support my hobby projects (like this one), you can check out this page:
-[u]https://www.maxisjoe.xyz/maxfund[/u]
+[url={https://www.maxisjoe.xyz/maxfund}][u]https://www.maxisjoe.xyz/maxfund[/u][/url]
 
 "
 
