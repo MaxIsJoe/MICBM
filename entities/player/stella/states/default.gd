@@ -2,11 +2,13 @@
 extends State
 
 @export var projectile_scenes: Array[PackedScene] = []
+@export var sound_attack: AudioStreamPlayer2D
 @export var target_teams: Array[int] = [0, 1, 2]
 @export var max_ammo: int = 6
 @export var projectile_throw_speed: float = 2.0
 @export var reload_time: float = 5
 var current_ammo: int = max_ammo
+
 
 func _step(delta: float):
 	super(delta)
@@ -33,6 +35,7 @@ func attack():
 		current_ammo -= 1
 		if %reload_timer.is_stopped():
 			%reload_timer.start()
+		if (sound_attack != null && sound_attack.stream != null): sound_attack.play()
 	update_ammo()
 
 func gain_ammo():
