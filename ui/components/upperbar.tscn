@@ -103,3 +103,7 @@ offset_right = -128.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
+allow_greater = true
+allow_lesser = true
+stretch_margin_top = 6
+stretch_margin_bottom = 6
