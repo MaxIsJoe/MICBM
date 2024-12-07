@@ -327,6 +327,7 @@ text = "[center]CAUGHT"
 
 [node name="stat_list" type="VBoxContainer" parent="Stats/panel/content"]
 layout_mode = 2
+theme_override_constants/separation = 6
 
 [node name="egress" type="Button" parent="Stats/panel/content"]
 modulate = Color(1, 1, 1, 0)
