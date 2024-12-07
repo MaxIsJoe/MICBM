@@ -32,4 +32,6 @@ If you're not interested in modding or game development, you can head over to th
 > Only download releases from this repository, and do not run executables from outside sources unless you can verify that they're safe by checking out which branch/fork they are compiled from **on github** using Github Actions.
 
 > [!NOTE]  
-> ICBM may be considered as a "gooner" game, as it contains adult themes revolving bondage. However, **zero** nudity or sex are contained in the original game + this mod. If you're not interested in adult-themed content, this game isn't for you.
+> ICBM may be considered as a "gooner" game to some, as it contains adult themes revolving bondage. However, **zero** nudity or sex are contained in the original game + this mod.
+>
+> If you're not interested in adult-themed content, this game isn't for you.
