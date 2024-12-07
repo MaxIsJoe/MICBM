@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="ICBM"
+config/name="MM-ICBM"
+config/description="Maxine's Modded ICBM"
 config/version="1.0.0-m.1"
 run/main_scene="res://ui/title/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -20,6 +21,7 @@ config/icon="res://ui/components/bomb.png"
 [audio]
 
 buses/default_bus_layout="res://audio/audio_bus.tres"
+general/text_to_speech=true
 
 [autoload]
 
